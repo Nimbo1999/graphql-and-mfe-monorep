@@ -2,7 +2,9 @@
   "name": "graphql-backend-fin",
   "version": "0.0.1",
   "description": "Backend in node + typescript + graphql",
+  "type": "module",
   "scripts": {
+    "start": "nodemon ./src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,5 +21,15 @@
   "bugs": {
     "url": "https://github.com/Nimbo1999/graphql-backend-fin/issues"
   },
-  "homepage": "https://github.com/Nimbo1999/graphql-backend-fin#readme"
+  "homepage": "https://github.com/Nimbo1999/graphql-backend-fin#readme",
+  "dependencies": {
+    "apollo-server": "^3.10.0",
+    "graphql": "^16.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.3",
+    "nodemon": "^2.0.19",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4"
+  }
 }
