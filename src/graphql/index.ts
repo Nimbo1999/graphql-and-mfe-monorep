@@ -1,12 +1,11 @@
 import { gql } from 'apollo-server';
+import metadata from './schema/types/metadata';
 
 export const typeDefs = gql`
-    type Book {
-        title: String
-        author: String
-    }
+    # Types
+    ${metadata}
 
     type Query {
-        books: [Book]
+        metadata: MetaData
     }
 `;
