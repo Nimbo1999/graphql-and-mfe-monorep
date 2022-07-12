@@ -1,0 +1,23 @@
+{
+  "name": "graphql-backend-fin",
+  "version": "0.0.1",
+  "description": "Backend in node + typescript + graphql",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nimbo1999/graphql-backend-fin.git"
+  },
+  "keywords": [
+    "graphql",
+    "typescript",
+    "node"
+  ],
+  "author": "Matheus Lopes <matlopes1999@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nimbo1999/graphql-backend-fin/issues"
+  },
+  "homepage": "https://github.com/Nimbo1999/graphql-backend-fin#readme"
+}
