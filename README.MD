@@ -3,7 +3,11 @@
 # 1. Create the image with
 
 ```
-docker image build . -t postgres-db
+docker build -t graphql-backend -f Dockerfile.backend .
+```
+
+```
+docker image build -t postgres-db -f Dockerfile.database .
 ```
 
 # 2. Create docker container with
