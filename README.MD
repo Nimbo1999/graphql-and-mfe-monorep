@@ -14,3 +14,11 @@ docker image build -t postgres-db -f Dockerfile.database .
 ```
 docker run --name postgres-db -p 5432:5432 -e POSTGRES_PASSWORD=123456 -d postgres-db
 ```
+
+## PGAdmin container util
+```
+docker run -p 80:80 \
+    -e 'PGADMIN_DEFAULT_EMAIL=user@domain.com' \
+    -e 'PGADMIN_DEFAULT_PASSWORD=1234' \
+    -d dpage/pgadmin4
+```
