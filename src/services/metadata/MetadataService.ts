@@ -1,7 +1,7 @@
 import DataSource from '../../services/datasource';
 
 import { IMetadata } from "../../models/IMetadata";
-import Metadata from '../../models/Entites/Metadata';
+import Metadata from '../../models/entities/Metadata';
 
 import { IMetadataFactory } from "../../factories/metadata/IFactory";
 
@@ -20,7 +20,8 @@ export default class MetadataService implements IMetadataService {
 
     async generate(): Promise<IMetadata> {
         const meta: IMetadata = this.metadataFactory.create();
-        return this.metadataRepository.save(meta);
+        const savedMeta = await this.metadataRepository.save(meta as Metadata);
+        return savedMeta;
     }
 
     async update(meta: IMetadata): Promise<IMetadata> {

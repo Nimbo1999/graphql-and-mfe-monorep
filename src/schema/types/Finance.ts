@@ -2,7 +2,7 @@ import { gql } from 'apollo-server';
 
 const finance = gql`
     type Finance {
-        id: ID!
+        id: Int!
         meta: MetaData
         amount: Float!
         description: String

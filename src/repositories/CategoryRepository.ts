@@ -1,4 +1,4 @@
-import Category from '../models/Entites/Category';
+import Category from '../models/entities/Category';
 import DataSource from '../services/datasource';
 
 const categoryRepository = DataSource.getRepository(Category);

@@ -2,7 +2,7 @@ import { gql } from 'apollo-server';
 
 const metadata = gql`
     type MetaData {
-        id: ID
+        id: Int!
         createdAt: String
         lastModifiedAt: String
     }

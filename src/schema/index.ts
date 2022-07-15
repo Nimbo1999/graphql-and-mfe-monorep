@@ -14,8 +14,7 @@ export const typeDefs = gql`
     ${categoryInput}
 
     type Query {
-        categories: [Category]
-        finance(id: ID!): Finance
+        findCategory(categoryName: String): [Category]
     }
 
     type Mutation {

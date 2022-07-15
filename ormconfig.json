@@ -9,6 +9,8 @@
     "migrations": ["src/migrations/*.js"],
     "migrationsTableName": "finance_migrations",
     "cli": { 
-        "migrationsDir": "src/migration" 
+        "migrationsDir": "src/migrations",
+        "entitiesDir": "src/models/entities" ,
+        "subscribersDir": "src/subscriber" 
     }
 }

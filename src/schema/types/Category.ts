@@ -2,7 +2,7 @@ import { gql } from 'apollo-server';
 
 const category = gql`
     type Category {
-        id: ID!
+        id: Int!
         meta: MetaData
         name: String!
     }

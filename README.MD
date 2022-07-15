@@ -12,7 +12,7 @@ docker image build -t postgres-db -f Dockerfile.database .
 
 # 2. Create docker container with
 ```
-docker run --name postgres-db -p 5432:5432 -e POSTGRES_PASSWORD=123456 -d postgres-db
+docker run --name postgres-db -p 5432:5432 -d postgres-db
 ```
 
 ## PGAdmin container util

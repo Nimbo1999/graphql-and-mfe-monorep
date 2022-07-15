@@ -1,5 +1,6 @@
 import { Repository } from 'typeorm';
-import Category from '../../models/Entites/Category';
+import Category from '../../models/entities/Category';
+import { IMetadata } from '../../models/IMetadata';
 import { ICategory } from '../../models/ICategory';
 
 import DataSource from '../../services/datasource';
@@ -17,8 +18,12 @@ export default class CategoryService implements ICategoryService {
         this.repository = categoryRepository;
     }
 
+    async findCategory(name?: string): Promise<ICategory[]> {
+        return await this.repository.findBy({ name });
+    }
+
     async createCategory(name: string): Promise<ICategory> {
-        const meta = await this.metaService.generate();
+        const meta: IMetadata = await this.metaService.generate();
         const category = new Category(name, meta);
         return this.repository.save(category);
     }
