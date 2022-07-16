@@ -12,8 +12,8 @@ export default class Finance implements IFinance {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @OneToOne(() => Metadata)
-    @JoinColumn({ name: "meta_id" })
+    @OneToOne(() => Metadata, { eager: true })
+    @JoinColumn({ name: "meta_id", referencedColumnName: 'id' })
     meta!: IMetadata;
 
     @Column("decimal")

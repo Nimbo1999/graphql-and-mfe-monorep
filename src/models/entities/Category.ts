@@ -10,8 +10,8 @@ export default class Category implements ICategory {
     @PrimaryGeneratedColumn()
     id?: number;
 
-    @OneToOne(() => Metadata)
-    @JoinColumn({ name: "meta_id" })
+    @OneToOne(() => Metadata, { eager: true })
+    @JoinColumn({ name: "meta_id", referencedColumnName: "id" })
     meta: IMetadata;
 
     @Column("varchar")
