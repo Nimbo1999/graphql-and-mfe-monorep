@@ -1,4 +1,4 @@
-import { findCategory }  from './queries';
+import { findCategory } from './queries';
 import { addCategory } from './mutations';
 
 export const resolvers = {

@@ -11,10 +11,10 @@ export default class Category implements ICategory {
     id?: number;
 
     @OneToOne(() => Metadata, { eager: true })
-    @JoinColumn({ name: "meta_id", referencedColumnName: "id" })
+    @JoinColumn({ name: 'meta_id', referencedColumnName: 'id' })
     meta: IMetadata;
 
-    @Column("varchar")
+    @Column('varchar')
     name: string;
 
     constructor(name: string, meta: IMetadata) {

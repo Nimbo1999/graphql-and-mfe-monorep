@@ -14,8 +14,8 @@ export const findCategory = async (_: any, { categoryName }: Payload): Promise<I
     const categoryService = new CategoryService(metadataService, categoryRepository);
     try {
         return await categoryService.findCategory(categoryName);
-    } catch(err) {
+    } catch (err) {
         console.error(err);
         throw err;
     }
-}
+};

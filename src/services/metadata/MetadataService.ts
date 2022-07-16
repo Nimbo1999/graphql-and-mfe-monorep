@@ -1,21 +1,20 @@
 import DataSource from '../../services/datasource';
 
-import { IMetadata } from "../../models/IMetadata";
+import { IMetadata } from '../../models/IMetadata';
 import Metadata from '../../models/entities/Metadata';
 
-import { IMetadataFactory } from "../../factories/metadata/IFactory";
+import { IMetadataFactory } from '../../factories/metadata/IFactory';
 
-import { IMetadataService } from "./IService";
+import { IMetadataService } from './IService';
 import { Repository } from 'typeorm';
 
 export default class MetadataService implements IMetadataService {
-
     private metadataFactory: IMetadataFactory;
     private metadataRepository: Repository<Metadata>;
 
     constructor(metadataFactory: IMetadataFactory, metadataRepository: Repository<Metadata>) {
         this.metadataFactory = metadataFactory;
-        this.metadataRepository = metadataRepository
+        this.metadataRepository = metadataRepository;
     }
 
     async generate(): Promise<IMetadata> {
@@ -33,11 +32,10 @@ export default class MetadataService implements IMetadataService {
         const updateResult = await DataSource.createQueryBuilder()
             .update(Metadata)
             .set(updatedMetadata)
-            .where("id = :id", { id: meta.id! })
+            .where('id = :id', { id: meta.id! })
             .execute();
 
-        console.log({raw :updateResult.raw});
+        console.log({ raw: updateResult.raw });
         return updatedMetadata;
     }
-
 }

@@ -8,12 +8,12 @@ const AppDataSource = new DataSource({
     username: 'postgres',
     password: '1234',
     database: 'finance',
-    entities: ["src/models/entities/*.ts"],
-    migrations: ["src/migrations/*.ts"],
-    migrationsTableName: "finance_migrations",
+    entities: ['src/models/entities/*.ts'],
+    migrations: ['src/migrations/*.ts'],
+    migrationsTableName: 'finance_migrations',
     migrationsRun: true,
     synchronize: false,
-    logger: 'advanced-console',
+    logger: 'advanced-console'
 });
 
 export default AppDataSource;

@@ -13,16 +13,16 @@ export default class Finance implements IFinance {
     id!: number;
 
     @OneToOne(() => Metadata, { eager: true })
-    @JoinColumn({ name: "meta_id", referencedColumnName: 'id' })
+    @JoinColumn({ name: 'meta_id', referencedColumnName: 'id' })
     meta!: IMetadata;
 
-    @Column("decimal")
+    @Column('decimal')
     amount!: number;
 
-    @Column("varchar")
+    @Column('varchar')
     description?: string;
 
     @OneToOne(() => Category)
-    @JoinColumn({ name: "category_id" })
+    @JoinColumn({ name: 'category_id' })
     category!: ICategory;
 }

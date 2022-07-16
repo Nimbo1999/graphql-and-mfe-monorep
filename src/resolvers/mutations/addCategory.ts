@@ -16,8 +16,8 @@ export const addCategory = async (_: any, { category }: Payload): Promise<ICateg
     const categoryService = new CategoryService(metadataService, categoryRepository);
     try {
         return await categoryService.createCategory(category.name);
-    } catch(err) {
+    } catch (err) {
         console.error(err);
         throw err;
     }
-}
+};

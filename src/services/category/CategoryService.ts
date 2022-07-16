@@ -9,7 +9,6 @@ import { IMetadataService } from '../../services/metadata';
 import { ICategoryService } from './IService';
 
 export default class CategoryService implements ICategoryService {
-
     private metaService: IMetadataService;
     private repository: Repository<Category>;
 
@@ -27,5 +26,4 @@ export default class CategoryService implements ICategoryService {
         const category = new Category(name, meta);
         return this.repository.save(category);
     }
-
 }

@@ -6,10 +6,10 @@ export default class Metadata implements IMetadata {
     @PrimaryGeneratedColumn()
     id?: number;
 
-    @Column("timestamptz", { name: 'created_at' })
+    @Column('timestamptz', { name: 'created_at' })
     createdAt!: Date;
 
-    @Column("timestamptz", { name: 'last_modified_at' })
+    @Column('timestamptz', { name: 'last_modified_at' })
     lastModifiedAt!: Date;
 
     private constructor() {
