@@ -1,0 +1,19 @@
+{
+    "eslint.format.enable": true,
+    "editor.formatOnSave": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+    },
+    "eslint.options": {
+        "configFile": ".eslintrc.json"
+    },
+    "eslint.validate": ["javascript", "typescript"],
+    "[javascript]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
+}
