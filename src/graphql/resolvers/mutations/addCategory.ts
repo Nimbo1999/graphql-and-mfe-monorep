@@ -1,4 +1,4 @@
-import { ICategory } from 'models/ICategory';
+import { ICategory } from '../../../models';
 import { CategoryService } from '../../../services/category';
 import { MetadataService } from '../../../services/metadata';
 import MetadataFactory from '../../../factories/metadata/MetadataFactory';

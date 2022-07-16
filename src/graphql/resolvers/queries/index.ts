@@ -1,1 +1,1 @@
-export { findCategory } from './findCategory';
+export { findAllCategoryByName } from './findAllCategoryByName';

@@ -9,11 +9,14 @@ export interface Payload {
     categoryName?: string;
 }
 
-export const findCategory = async (_: any, { categoryName }: Payload): Promise<ICategory[]> => {
+export const findAllCategoryByName = async (
+    _: any,
+    { categoryName }: Payload
+): Promise<ICategory[]> => {
     const metadataService = new MetadataService(new MetadataFactory(), metadataRepository);
     const categoryService = new CategoryService(metadataService, categoryRepository);
     try {
-        return await categoryService.findCategory(categoryName);
+        return await categoryService.findAllCategoryByName(categoryName);
     } catch (err) {
         console.error(err);
         throw err;

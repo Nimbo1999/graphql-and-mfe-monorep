@@ -1,5 +1,6 @@
-import { Repository } from 'typeorm';
 import { Category, IMetadata, ICategory } from '../../models';
+
+import { ICategoryRepository } from '../../repositories';
 
 import { IMetadataService } from '../../services/metadata';
 
@@ -7,14 +8,18 @@ import { ICategoryService } from './IService';
 
 export default class CategoryService implements ICategoryService {
     private metaService: IMetadataService;
-    private repository: Repository<Category>;
+    private repository: ICategoryRepository;
 
-    constructor(metaService: IMetadataService, categoryRepository: Repository<Category>) {
+    constructor(metaService: IMetadataService, categoryRepository: ICategoryRepository) {
         this.metaService = metaService;
         this.repository = categoryRepository;
     }
 
-    async findCategory(name?: string): Promise<ICategory[]> {
+    async findOneCategoryById(id: number): Promise<ICategory> {
+        return await this.repository.findOneByOrFail({ id });
+    }
+
+    async findAllCategoryByName(name?: string): Promise<ICategory[]> {
         return await this.repository.findBy({ name });
     }
 
