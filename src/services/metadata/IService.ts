@@ -1,4 +1,4 @@
-import { IMetadata } from '../../models/IMetadata';
+import { IMetadata } from '../../models';
 
 export interface IMetadataService {
     generate(): Promise<IMetadata>;

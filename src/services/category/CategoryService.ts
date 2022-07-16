@@ -1,7 +1,5 @@
 import { Repository } from 'typeorm';
-import Category from '../../models/entities/Category';
-import { IMetadata } from '../../models/IMetadata';
-import { ICategory } from '../../models/ICategory';
+import { Category, IMetadata, ICategory } from '../../models';
 
 import { IMetadataService } from '../../services/metadata';
 

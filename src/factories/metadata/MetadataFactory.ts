@@ -1,4 +1,4 @@
-import Metadata from '../../models/entities/Metadata';
+import { Metadata } from '../../models';
 
 import { IMetadataFactory } from './IFactory';
 

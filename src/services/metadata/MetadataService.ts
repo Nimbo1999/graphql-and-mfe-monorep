@@ -2,8 +2,7 @@ import { Repository } from 'typeorm';
 
 import DataSource from '../../services/datasource';
 
-import { IMetadata } from '../../models/IMetadata';
-import Metadata from '../../models/entities/Metadata';
+import { IMetadata, Metadata } from '../../models';
 
 import { IMetadataFactory } from '../../factories/metadata/IFactory';
 

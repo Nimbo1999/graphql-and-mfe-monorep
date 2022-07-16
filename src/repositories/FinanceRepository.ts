@@ -1,4 +1,4 @@
-import Finance from '../models/entities/Finance';
+import { Finance } from '../models';
 import DataSource from '../services/datasource';
 
 const financeRepository = DataSource.getRepository(Finance);

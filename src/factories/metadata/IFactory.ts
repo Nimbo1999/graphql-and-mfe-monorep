@@ -1,4 +1,4 @@
-import { IMetadata } from '../../models/IMetadata';
+import { type IMetadata } from '../../models';
 
 export interface IMetadataFactory {
     create(): IMetadata;

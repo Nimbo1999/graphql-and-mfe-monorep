@@ -1,18 +1,16 @@
 import { gql } from 'apollo-server';
 
-import metadata from './types/metadata';
-import category from './types/Category';
-import finance from './types/Finance';
-import categoryInput from './inputs/CategoryInput';
+import { MetadataType, CategoryType, FinanceType } from './types';
+import { CategoryInput } from './inputs';
 
 export const typeDefs = gql`
     # Types
-    ${metadata}
-    ${category}
-    ${finance}
+    ${MetadataType}
+    ${CategoryType}
+    ${FinanceType}
 
     # Inputs
-    ${categoryInput}
+    ${CategoryInput}
 
     type Query {
         findCategory(categoryName: String): [Category]
