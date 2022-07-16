@@ -1,8 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, OneToOne } from 'typeorm';
 
-import { IMetadata } from 'models/IMetadata';
-import { IFinance } from 'models/IFinance';
-import { ICategory } from 'models/ICategory';
+import { IMetadata } from '../IMetadata';
+import { IFinance } from '../IFinance';
+import { ICategory } from '../ICategory';
 
 import Metadata from './Metadata';
 import Category from './Category';

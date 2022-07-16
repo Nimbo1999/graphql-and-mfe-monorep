@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, OneToOne } from 'typeorm';
 
-import { ICategory } from 'models/ICategory';
-import { IMetadata } from 'models/IMetadata';
+import { ICategory } from '../ICategory';
+import { IMetadata } from '../IMetadata';
 
 import Metadata from './Metadata';
 

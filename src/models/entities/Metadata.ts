@@ -1,5 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { IMetadata } from 'models/IMetadata';
+
+import { IMetadata } from '../IMetadata';
 
 @Entity()
 export default class Metadata implements IMetadata {

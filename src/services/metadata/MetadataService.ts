@@ -1,3 +1,5 @@
+import { Repository } from 'typeorm';
+
 import DataSource from '../../services/datasource';
 
 import { IMetadata } from '../../models/IMetadata';
@@ -6,7 +8,6 @@ import Metadata from '../../models/entities/Metadata';
 import { IMetadataFactory } from '../../factories/metadata/IFactory';
 
 import { IMetadataService } from './IService';
-import { Repository } from 'typeorm';
 
 export default class MetadataService implements IMetadataService {
     private metadataFactory: IMetadataFactory;

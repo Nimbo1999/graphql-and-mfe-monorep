@@ -1,4 +1,5 @@
 import { gql } from 'apollo-server';
+
 import metadata from './types/metadata';
 import category from './types/Category';
 import finance from './types/Finance';

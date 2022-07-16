@@ -1,9 +1,9 @@
 import { ICategory } from 'models/ICategory';
-import { CategoryService } from '../../services/category';
-import { MetadataService } from '../../services/metadata';
-import MetadataFactory from '../../factories/metadata/MetadataFactory';
-import metadataRepository from '../../repositories/MetadataRepository';
-import categoryRepository from '../../repositories/CategoryRepository';
+import { CategoryService } from '../../../services/category';
+import { MetadataService } from '../../../services/metadata';
+import MetadataFactory from '../../../factories/metadata/MetadataFactory';
+import metadataRepository from '../../../repositories/MetadataRepository';
+import categoryRepository from '../../../repositories/CategoryRepository';
 
 export interface Payload {
     categoryName?: string;

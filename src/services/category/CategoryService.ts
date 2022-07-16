@@ -3,7 +3,6 @@ import Category from '../../models/entities/Category';
 import { IMetadata } from '../../models/IMetadata';
 import { ICategory } from '../../models/ICategory';
 
-import DataSource from '../../services/datasource';
 import { IMetadataService } from '../../services/metadata';
 
 import { ICategoryService } from './IService';
