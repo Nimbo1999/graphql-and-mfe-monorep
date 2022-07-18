@@ -27,6 +27,21 @@ export default class FinanceService implements IFinanceService {
         this.categoryService = categoryService;
     }
 
+    async updateFinance(id: number, finace: FinanceInput): Promise<IFinance> {
+        const targetFinace = await this.repository.findOneByOrFail({ id });
+        const newFinanceCategory = await this.categoryService.findOneCategoryById(finace.category);
+        const updatedMetadata = await this.metaService.update(targetFinace.meta);
+
+        targetFinace.amount = finace.amount;
+        targetFinace.description = Boolean(finace.description)
+            ? finace.description
+            : targetFinace.description;
+        targetFinace.category = newFinanceCategory;
+        targetFinace.meta = updatedMetadata;
+
+        return this.repository.save(targetFinace);
+    }
+
     async findFinanceById(id: number): Promise<IFinance | null> {
         return await this.repository.findOneBy({ id });
     }

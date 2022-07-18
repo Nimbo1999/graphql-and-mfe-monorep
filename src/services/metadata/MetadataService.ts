@@ -1,7 +1,5 @@
 import { Repository } from 'typeorm';
 
-import DataSource from '../../services/datasource';
-
 import { IMetadata, Metadata } from '../../models';
 
 import { IMetadataFactory } from '../../factories/metadata/IFactory';
@@ -9,33 +7,25 @@ import { IMetadataFactory } from '../../factories/metadata/IFactory';
 import { IMetadataService } from './IService';
 
 export default class MetadataService implements IMetadataService {
-    private metadataFactory: IMetadataFactory;
-    private metadataRepository: Repository<Metadata>;
+    private factory: IMetadataFactory;
+    private repository: Repository<Metadata>;
 
     constructor(metadataFactory: IMetadataFactory, metadataRepository: Repository<Metadata>) {
-        this.metadataFactory = metadataFactory;
-        this.metadataRepository = metadataRepository;
+        this.factory = metadataFactory;
+        this.repository = metadataRepository;
     }
 
     async generate(): Promise<IMetadata> {
-        const meta: IMetadata = this.metadataFactory.create();
-        const savedMeta = await this.metadataRepository.save(meta as Metadata);
+        const meta: IMetadata = this.factory.create();
+        const savedMeta = await this.repository.save(meta as Metadata);
         return savedMeta;
     }
 
     async update(meta: IMetadata): Promise<IMetadata> {
-        const updatedMetadata = this.metadataFactory.create();
+        const updatedMetadata = this.factory.create();
         updatedMetadata.id = meta.id;
         updatedMetadata.createdAt = meta.createdAt;
         updatedMetadata.lastModifiedAt = new Date();
-
-        const updateResult = await DataSource.createQueryBuilder()
-            .update(Metadata)
-            .set(updatedMetadata)
-            .where('id = :id', { id: meta.id! })
-            .execute();
-
-        console.log({ raw: updateResult.raw });
-        return updatedMetadata;
+        return this.repository.save(updatedMetadata);
     }
 }

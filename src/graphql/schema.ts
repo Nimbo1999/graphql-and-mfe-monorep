@@ -22,5 +22,6 @@ export const typeDefs = gql`
     type Mutation {
         addCategory(category: CategoryInput): Category
         addFinance(finance: FinanceInput): Finance
+        updateFinance(id: Int, finance: FinanceInput): Finance
     }
 `;
