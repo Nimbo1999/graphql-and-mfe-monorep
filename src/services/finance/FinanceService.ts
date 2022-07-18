@@ -27,6 +27,10 @@ export default class FinanceService implements IFinanceService {
         this.categoryService = categoryService;
     }
 
+    async findAllFinance(): Promise<IFinance[]> {
+        return await this.repository.find();
+    }
+
     async addFinance(financeInput: FinanceInput): Promise<IFinance> {
         const meta = await this.metaService.generate();
         const category = await this.categoryService.findOneCategoryById(financeInput.category);

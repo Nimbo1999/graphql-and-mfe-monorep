@@ -15,6 +15,7 @@ export const typeDefs = gql`
 
     type Query {
         findAllCategoryByName(categoryName: String): [Category]
+        findAllFinance: [Finance]
     }
 
     type Mutation {

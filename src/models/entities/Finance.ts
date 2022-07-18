@@ -22,7 +22,7 @@ export default class Finance implements IFinance {
     @Column('varchar')
     description?: string;
 
-    @OneToOne(() => Category)
+    @OneToOne(() => Category, { eager: true })
     @JoinColumn({ name: 'category_id' })
     category!: ICategory;
 }
