@@ -27,6 +27,10 @@ export default class FinanceService implements IFinanceService {
         this.categoryService = categoryService;
     }
 
+    async findFinanceById(id: number): Promise<IFinance | null> {
+        return await this.repository.findOneBy({ id });
+    }
+
     async findAllFinance(): Promise<IFinance[]> {
         return await this.repository.find();
     }

@@ -9,4 +9,5 @@ export type FinanceInput = {
 export interface IFinanceService {
     addFinance(financeInput: FinanceInput): Promise<IFinance>;
     findAllFinance(): Promise<IFinance[]>;
+    findFinanceById(id: number): Promise<IFinance | null>;
 }

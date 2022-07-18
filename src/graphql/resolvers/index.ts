@@ -1,10 +1,11 @@
-import { findAllCategoryByName, findAllFinance } from './queries';
+import { findAllCategoryByName, findAllFinance, findFinanceById } from './queries';
 import { addCategory, addFinance } from './mutations';
 
 export const resolvers = {
     Query: {
         findAllCategoryByName,
-        findAllFinance
+        findAllFinance,
+        findFinanceById
     },
     Mutation: {
         addCategory,
