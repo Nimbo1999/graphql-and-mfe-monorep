@@ -10,6 +10,7 @@ const AppDataSource = new DataSource({
     database: 'finance',
     entities: ['src/models/entities/*.ts'],
     migrations: ['src/migrations/*.ts'],
+    subscribers: ['src/subscribers/*.ts'],
     migrationsTableName: 'finance_migrations',
     migrationsRun: true,
     synchronize: false,

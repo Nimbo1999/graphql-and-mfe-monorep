@@ -10,12 +10,11 @@ import Category from './Category';
 @Entity()
 export default class Finance implements IFinance {
     @PrimaryGeneratedColumn()
-    id!: number;
+    id?: number;
 
     @OneToOne(() => Metadata, {
         eager: true,
-        cascade: true,
-        onDelete: 'CASCADE'
+        cascade: true
     })
     @JoinColumn({ name: 'meta_id', referencedColumnName: 'id' })
     meta!: IMetadata;

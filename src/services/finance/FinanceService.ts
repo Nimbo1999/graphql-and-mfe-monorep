@@ -27,10 +27,9 @@ export default class FinanceService implements IFinanceService {
         this.categoryService = categoryService;
     }
 
-    async deleteFinance(id: number): Promise<null> {
+    async deleteFinance(id: number): Promise<IFinance> {
         const finance = await this.repository.findOneByOrFail({ id });
-        await this.repository.remove(finance);
-        return null;
+        return await this.repository.remove(finance);
     }
 
     async updateFinance(id: number, finace: FinanceInput): Promise<IFinance> {

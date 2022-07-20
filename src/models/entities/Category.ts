@@ -12,8 +12,7 @@ export default class Category implements ICategory {
 
     @OneToOne(() => Metadata, {
         eager: true,
-        cascade: true,
-        onDelete: 'CASCADE'
+        cascade: true
     })
     @JoinColumn({ name: 'meta_id', referencedColumnName: 'id' })
     meta: IMetadata;
