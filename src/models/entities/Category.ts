@@ -10,7 +10,11 @@ export default class Category implements ICategory {
     @PrimaryGeneratedColumn()
     id?: number;
 
-    @OneToOne(() => Metadata, { eager: true })
+    @OneToOne(() => Metadata, {
+        eager: true,
+        cascade: true,
+        onDelete: 'CASCADE'
+    })
     @JoinColumn({ name: 'meta_id', referencedColumnName: 'id' })
     meta: IMetadata;
 

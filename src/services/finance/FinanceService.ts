@@ -27,6 +27,12 @@ export default class FinanceService implements IFinanceService {
         this.categoryService = categoryService;
     }
 
+    async deleteFinance(id: number): Promise<null> {
+        const finance = await this.repository.findOneByOrFail({ id });
+        await this.repository.remove(finance);
+        return null;
+    }
+
     async updateFinance(id: number, finace: FinanceInput): Promise<IFinance> {
         const targetFinace = await this.repository.findOneByOrFail({ id });
         const newFinanceCategory = await this.categoryService.findOneCategoryById(finace.category);
@@ -51,7 +57,7 @@ export default class FinanceService implements IFinanceService {
     }
 
     async addFinance(financeInput: FinanceInput): Promise<IFinance> {
-        const meta = await this.metaService.generate();
+        const meta = this.metaService.generate();
         const category = await this.categoryService.findOneCategoryById(financeInput.category);
         const finance = this.factory.create(financeInput, meta, category);
         return await this.repository.save(finance);

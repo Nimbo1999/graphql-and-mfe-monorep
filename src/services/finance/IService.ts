@@ -11,4 +11,5 @@ export interface IFinanceService {
     findAllFinance(): Promise<IFinance[]>;
     findFinanceById(id: number): Promise<IFinance | null>;
     updateFinance(id: number, finace: FinanceInput): Promise<IFinance>;
+    deleteFinance(id: number): Promise<null>;
 }

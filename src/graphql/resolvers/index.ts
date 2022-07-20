@@ -1,5 +1,5 @@
 import { findAllCategoryByName, findAllFinance, findFinanceById } from './queries';
-import { addCategory, addFinance, updateFinance } from './mutations';
+import { addCategory, addFinance, updateFinance, deleteFinance } from './mutations';
 
 export const resolvers = {
     Query: {
@@ -10,6 +10,7 @@ export const resolvers = {
     Mutation: {
         addCategory,
         addFinance,
-        updateFinance
+        updateFinance,
+        deleteFinance
     }
 };

@@ -15,10 +15,10 @@ export default class MetadataService implements IMetadataService {
         this.repository = metadataRepository;
     }
 
-    async generate(): Promise<IMetadata> {
+    generate(): IMetadata {
         const meta: IMetadata = this.factory.create();
-        const savedMeta = await this.repository.save(meta as Metadata);
-        return savedMeta;
+        // const savedMeta = await this.repository.save(meta as Metadata);
+        return meta;
     }
 
     async update(meta: IMetadata): Promise<IMetadata> {
