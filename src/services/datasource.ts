@@ -2,10 +2,12 @@ import { DataSource } from 'typeorm';
 
 import { Category, Finance, Metadata } from '../models/entities/index.js';
 
+const { FINANCE_DB_HOST = 'localhost' } = process.env;
+
 const AppDataSource = new DataSource({
     applicationName: 'graphql-backend-app',
     type: 'postgres',
-    host: 'localhost',
+    host: FINANCE_DB_HOST,
     port: 5432,
     username: 'postgres',
     password: '1234',

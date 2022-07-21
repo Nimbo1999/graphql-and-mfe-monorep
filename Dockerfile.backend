@@ -4,9 +4,13 @@ WORKDIR /app
 COPY ./package.json .
 RUN npm install
 
-COPY ./src .
+COPY ./src ./src
 COPY ./tsconfig.json .
+
+ENV FINANCE_DB_HOST=172.17.0.2
+
+RUN npm run build
 
 EXPOSE 8000
 
-CMD [ "npm", "start" ]
+CMD [ "node", "." ]
