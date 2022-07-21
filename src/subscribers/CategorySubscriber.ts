@@ -1,7 +1,7 @@
 import { EventSubscriber, EntitySubscriberInterface, RemoveEvent } from 'typeorm';
-import { MetadataRepository } from '../repositories';
+import { MetadataRepository } from '../repositories/index.js';
 
-import { Category } from '../models';
+import { Category } from '../models/index.js';
 
 @EventSubscriber()
 export class CategorySubscriber implements EntitySubscriberInterface<Category> {

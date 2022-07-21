@@ -1,7 +1,11 @@
-import { IFinance } from '../../../models';
-import { CategoryService, MetadataService, FinanceService } from '../../../services';
-import { MetadataFactory, FinanceFactory } from '../../../factories';
-import { FinanceRepository, MetadataRepository, CategoryRepositoy } from '../../../repositories';
+import { IFinance } from '../../../models/index.js';
+import { CategoryService, MetadataService, FinanceService } from '../../../services/index.js';
+import { MetadataFactory, FinanceFactory } from '../../../factories/index.js';
+import {
+    FinanceRepository,
+    MetadataRepository,
+    CategoryRepositoy
+} from '../../../repositories/index.js';
 
 export const findAllFinance = async (): Promise<IFinance[]> => {
     const metadataService = new MetadataService(new MetadataFactory(), MetadataRepository);

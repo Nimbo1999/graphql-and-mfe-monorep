@@ -1,13 +1,13 @@
-import { IFinance } from '../../models';
+import { IFinance } from '../../models/index.js';
 
-import { IFinanceRepository } from '../../repositories';
-import { IFinanceFactory } from '../../factories';
+import { IFinanceRepository } from '../../repositories/index.js';
+import { IFinanceFactory } from '../../factories/index.js';
 
-import { IMetadataService } from '../metadata';
+import { IMetadataService } from '../metadata/index.js';
 
-import { IFinanceService } from '.';
-import { FinanceInput } from './IService';
-import { ICategoryService } from 'services/category';
+import { IFinanceService } from './index.js';
+import { FinanceInput } from './IService.js';
+import { ICategoryService } from '../../services/category/index.js';
 
 export default class FinanceService implements IFinanceService {
     private metaService: IMetadataService;

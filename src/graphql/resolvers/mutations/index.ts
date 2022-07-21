@@ -1,6 +1,6 @@
-export { addCategory } from './addCategory';
-export { addFinance } from './addFinance';
-export { updateFinance } from './updateFinance';
-export { deleteFinance } from './deleteFinance';
-export { deleteCategory } from './deleteCategory';
-export { updateCategory } from './updateCategory';
+export { addCategory } from './addCategory.js';
+export { addFinance } from './addFinance.js';
+export { updateFinance } from './updateFinance.js';
+export { deleteFinance } from './deleteFinance.js';
+export { deleteCategory } from './deleteCategory.js';
+export { updateCategory } from './updateCategory.js';

@@ -1,10 +1,7 @@
-import { Category, IMetadata, ICategory } from '../../models';
-
-import { ICategoryRepository } from '../../repositories';
-
-import { IMetadataService } from '../../services/metadata';
-
-import { ICategoryService } from './IService';
+import { Category, IMetadata, ICategory } from '../../models/index.js';
+import { ICategoryRepository } from '../../repositories/index.js';
+import { IMetadataService } from '../../services/metadata/index.js';
+import { ICategoryService } from './IService.js';
 
 export default class CategoryService implements ICategoryService {
     private metaService: IMetadataService;

@@ -1,7 +1,7 @@
-import { ICategory } from '../../../models';
-import { CategoryService, MetadataService } from '../../../services';
-import { MetadataRepository, CategoryRepositoy } from '../../../repositories';
-import { MetadataFactory } from '../../../factories';
+import { ICategory } from '../../../models/index.js';
+import { CategoryService, MetadataService } from '../../../services/index.js';
+import { MetadataRepository, CategoryRepositoy } from '../../../repositories/index.js';
+import { MetadataFactory } from '../../../factories/index.js';
 
 export interface Payload {
     id: number;

@@ -1,7 +1,7 @@
 import { gql } from 'apollo-server';
 
-import { MetadataType, CategoryType, FinanceType } from './types';
-import { CategoryInput, FinanceInput } from './inputs';
+import { MetadataType, CategoryType, FinanceType } from './types/index.js';
+import { CategoryInput, FinanceInput } from './inputs/index.js';
 
 export const typeDefs = gql`
     # Types

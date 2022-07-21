@@ -1,3 +1,3 @@
-export { findAllCategoryByName } from './findAllCategoryByName';
-export { findAllFinance } from './findAllFinance';
-export { findFinanceById } from './findFinanceById';
+export { findAllCategoryByName } from './findAllCategoryByName.js';
+export { findAllFinance } from './findAllFinance.js';
+export { findFinanceById } from './findFinanceById.js';

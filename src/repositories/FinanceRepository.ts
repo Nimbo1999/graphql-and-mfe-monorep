@@ -1,6 +1,6 @@
 import { Repository } from 'typeorm';
-import { Finance } from '../models';
-import DataSource from '../services/datasource';
+import { Finance } from '../models/index.js';
+import DataSource from '../services/datasource.js';
 
 export type IFinanceRepository = Repository<Finance>;
 

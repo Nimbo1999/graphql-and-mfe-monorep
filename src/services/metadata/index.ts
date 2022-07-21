@@ -1,2 +1,2 @@
-export { default as MetadataService } from './MetadataService';
-export { IMetadataService } from './IService';
+export { default as MetadataService } from './MetadataService.js';
+export { IMetadataService } from './IService.js';

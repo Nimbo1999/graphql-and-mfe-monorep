@@ -1,11 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, OneToOne } from 'typeorm';
 
-import { IMetadata } from '../IMetadata';
-import { IFinance } from '../IFinance';
-import { ICategory } from '../ICategory';
+import { IMetadata } from '../IMetadata.js';
+import { IFinance } from '../IFinance.js';
+import { ICategory } from '../ICategory.js';
 
-import Metadata from './Metadata';
-import Category from './Category';
+import Metadata from './Metadata.js';
+import Category from './Category.js';
 
 @Entity()
 export default class Finance implements IFinance {

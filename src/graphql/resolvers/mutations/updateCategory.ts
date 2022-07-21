@@ -1,6 +1,6 @@
-import { MetadataRepository, CategoryRepositoy } from '../../../repositories';
-import { MetadataService, CategoryService } from '../../../services';
-import { MetadataFactory } from '../../../factories';
+import { MetadataRepository, CategoryRepositoy } from '../../../repositories/index.js';
+import { MetadataService, CategoryService } from '../../../services/index.js';
+import { MetadataFactory } from '../../../factories/index.js';
 
 export interface Payload {
     id: number;

@@ -1,2 +1,2 @@
-export { default as CategoryService } from './CategoryService';
-export { ICategoryService } from './IService';
+export { default as CategoryService } from './CategoryService.js';
+export { ICategoryService } from './IService.js';

@@ -1,5 +1,7 @@
 import { DataSource } from 'typeorm';
 
+import { Category, Finance, Metadata } from '../models/entities/index.js';
+
 const AppDataSource = new DataSource({
     applicationName: 'graphql-backend-app',
     type: 'postgres',
@@ -8,9 +10,9 @@ const AppDataSource = new DataSource({
     username: 'postgres',
     password: '1234',
     database: 'finance',
-    entities: ['src/models/entities/*.ts'],
-    migrations: ['src/migrations/*.ts'],
-    subscribers: ['src/subscribers/*.ts'],
+    entities: [Category, Finance, Metadata],
+    migrations: ['src/migrations/*.js'],
+    subscribers: ['src/subscribers/*.js'],
     migrationsTableName: 'finance_migrations',
     migrationsRun: true,
     synchronize: false,

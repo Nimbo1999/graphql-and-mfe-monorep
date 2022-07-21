@@ -1,12 +1,16 @@
-import { IFinance } from '../../../models';
+import { IFinance } from '../../../models/index.js';
 import {
     CategoryService,
     MetadataService,
     FinanceService,
     type FinanceInput
-} from '../../../services';
-import { MetadataRepository, CategoryRepositoy, FinanceRepository } from '../../../repositories';
-import { FinanceFactory, MetadataFactory } from '../../../factories';
+} from '../../../services/index.js';
+import {
+    MetadataRepository,
+    CategoryRepositoy,
+    FinanceRepository
+} from '../../../repositories/index.js';
+import { FinanceFactory, MetadataFactory } from '../../../factories/index.js';
 
 export interface Payload {
     finance: FinanceInput;

@@ -1,7 +1,7 @@
 import { EventSubscriber, EntitySubscriberInterface, RemoveEvent } from 'typeorm';
-import { MetadataRepository } from '../repositories';
+import { MetadataRepository } from '../repositories/index.js';
 
-import { Finance } from '../models';
+import { Finance } from '../models/index.js';
 
 @EventSubscriber()
 export class FinanceSubscriber implements EntitySubscriberInterface<Finance> {

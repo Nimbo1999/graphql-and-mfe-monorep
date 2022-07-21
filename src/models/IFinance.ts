@@ -1,5 +1,5 @@
-import { type ICategory } from './ICategory';
-import { type IMetadata } from './IMetadata';
+import { type ICategory } from './ICategory.js';
+import { type IMetadata } from './IMetadata.js';
 
 export interface IFinance {
     id?: number;

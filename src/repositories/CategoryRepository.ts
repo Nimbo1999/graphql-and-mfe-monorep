@@ -1,6 +1,6 @@
 import { Repository } from 'typeorm';
-import { Category } from '../models';
-import DataSource from '../services/datasource';
+import { Category } from '../models/index.js';
+import DataSource from '../services/datasource.js';
 
 export type ICategoryRepository = Repository<Category>;
 

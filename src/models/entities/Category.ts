@@ -1,9 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, OneToOne } from 'typeorm';
 
-import { ICategory } from '../ICategory';
-import { IMetadata } from '../IMetadata';
+import { ICategory } from '../ICategory.js';
+import { IMetadata } from '../IMetadata.js';
 
-import Metadata from './Metadata';
+import Metadata from './Metadata.js';
 
 @Entity()
 export default class Category implements ICategory {

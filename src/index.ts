@@ -1,6 +1,6 @@
 import 'reflect-metadata';
-import server from './server';
-import datasource from './services/datasource';
+import server from './server.js';
+import datasource from './services/datasource.js';
 
 datasource
     .initialize()

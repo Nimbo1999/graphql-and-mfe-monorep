@@ -1,4 +1,4 @@
-import { IFinance } from '../../models';
+import { IFinance } from '../../models/index.js';
 
 export type FinanceInput = {
     amount: number;

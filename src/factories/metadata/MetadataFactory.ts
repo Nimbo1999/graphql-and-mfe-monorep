@@ -1,6 +1,6 @@
-import { Metadata } from '../../models';
+import { Metadata } from '../../models/index.js';
 
-import { IMetadataFactory } from './IFactory';
+import { IMetadataFactory } from './IFactory.js';
 
 export default class MetadataFactory implements IMetadataFactory {
     create(): Metadata {

@@ -1,10 +1,10 @@
 import { Repository } from 'typeorm';
 
-import { IMetadata, Metadata } from '../../models';
+import { IMetadata, Metadata } from '../../models/index.js';
 
-import { IMetadataFactory } from '../../factories/metadata/IFactory';
+import { IMetadataFactory } from '../../factories/metadata/IFactory.js';
 
-import { IMetadataService } from './IService';
+import { IMetadataService } from './IService.js';
 
 export default class MetadataService implements IMetadataService {
     private factory: IMetadataFactory;

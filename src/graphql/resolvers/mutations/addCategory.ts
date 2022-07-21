@@ -1,9 +1,7 @@
-import { ICategory } from '../../../models';
-import { CategoryService } from '../../../services/category';
-import { MetadataService } from '../../../services/metadata';
-import MetadataFactory from '../../../factories/metadata/MetadataFactory';
-import metadataRepository from '../../../repositories/MetadataRepository';
-import categoryRepository from '../../../repositories/CategoryRepository';
+import { ICategory } from '../../../models/index.js';
+import { CategoryService, MetadataService } from '../../../services/index.js';
+import { MetadataFactory } from '../../../factories/index.js';
+import { MetadataRepository, CategoryRepositoy } from '../../../repositories/index.js';
 
 type CategoryInput = { name: string };
 
@@ -12,8 +10,8 @@ export interface Payload {
 }
 
 export const addCategory = async (_: any, { category }: Payload): Promise<ICategory> => {
-    const metadataService = new MetadataService(new MetadataFactory(), metadataRepository);
-    const categoryService = new CategoryService(metadataService, categoryRepository);
+    const metadataService = new MetadataService(new MetadataFactory(), MetadataRepository);
+    const categoryService = new CategoryService(metadataService, CategoryRepositoy);
     try {
         return await categoryService.createCategory(category.name);
     } catch (err) {

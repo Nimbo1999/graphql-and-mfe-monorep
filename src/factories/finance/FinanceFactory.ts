@@ -1,7 +1,7 @@
-import { FinanceInput } from '../../services/finance';
-import { Finance, ICategory, IMetadata } from '../../models';
+import { FinanceInput } from '../../services/finance/index.js';
+import { Finance, ICategory, IMetadata } from '../../models/index.js';
 
-import { type IFinanceFactory } from './IFactory';
+import { type IFinanceFactory } from './IFactory.js';
 
 export default class FinanceFactory implements IFinanceFactory {
     create(finance: FinanceInput, meta: IMetadata, category: ICategory): Finance {
