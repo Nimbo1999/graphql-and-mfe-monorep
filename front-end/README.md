@@ -1,0 +1,1 @@
+These micro-frontend apps was bootstrapped by [create-mf-app](https://www.npmjs.com/package/create-mf-app).
