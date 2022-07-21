@@ -15,6 +15,11 @@ export default class CategoryService implements ICategoryService {
         this.repository = categoryRepository;
     }
 
+    async deleteById(id: number): Promise<ICategory> {
+        const category = await this.repository.findOneByOrFail({ id });
+        return await this.repository.remove(category);
+    }
+
     async findOneCategoryById(id: number): Promise<ICategory> {
         return await this.repository.findOneByOrFail({ id });
     }
@@ -24,7 +29,7 @@ export default class CategoryService implements ICategoryService {
     }
 
     async createCategory(name: string): Promise<ICategory> {
-        const meta: IMetadata = await this.metaService.generate();
+        const meta: IMetadata = this.metaService.generate();
         const category = new Category(name, meta);
         return this.repository.save(category);
     }
