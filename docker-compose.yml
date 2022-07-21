@@ -1,0 +1,31 @@
+version: '3'
+services:
+  db:
+    container_name: database
+    build:
+      context: ./graphql-backend-fin
+      dockerfile: Dockerfile.database
+
+  finance-app:
+    build:
+      context: ./graphql-backend-fin
+      dockerfile: Dockerfile.backend
+    container_name: graphql-server
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      - FINANCE_DB_HOST=db
+    ports:
+      - "8000:8000"
+
+  sgbd:
+    image: dpage/pgadmin4
+    container_name: sgbd
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=user@domain.com
+      - PGADMIN_DEFAULT_PASSWORD=1234
+    ports:
+      - "80:80"
+    depends_on:
+      - db
