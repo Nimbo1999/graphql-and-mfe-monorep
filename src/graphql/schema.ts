@@ -25,5 +25,6 @@ export const typeDefs = gql`
         updateFinance(id: Int!, finance: FinanceInput): Finance
         deleteFinance(id: Int!): Finance
         deleteCategory(id: Int!): Category
+        updateCategory(id: Int!, name: String!): Category
     }
 `;

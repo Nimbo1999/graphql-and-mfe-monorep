@@ -5,4 +5,5 @@ export interface ICategoryService {
     findAllCategoryByName(name?: string): Promise<ICategory[]>;
     findOneCategoryById(id: number): Promise<ICategory>;
     deleteById(id: number): Promise<ICategory>;
+    update(id: number, name: string): Promise<ICategory>;
 }

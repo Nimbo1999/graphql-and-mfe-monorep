@@ -15,6 +15,13 @@ export default class CategoryService implements ICategoryService {
         this.repository = categoryRepository;
     }
 
+    async update(id: number, name: string): Promise<ICategory> {
+        const category = await this.repository.findOneByOrFail({ id });
+        category.name = name;
+        category.meta = await this.metaService.update(category.meta);
+        return await this.repository.save(category);
+    }
+
     async deleteById(id: number): Promise<ICategory> {
         const category = await this.repository.findOneByOrFail({ id });
         return await this.repository.remove(category);
