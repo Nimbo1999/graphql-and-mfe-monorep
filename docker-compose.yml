@@ -3,12 +3,12 @@ services:
   db:
     container_name: database
     build:
-      context: ./graphql-backend-fin
+      context: ./backend
       dockerfile: Dockerfile.database
 
   finance-app:
     build:
-      context: ./graphql-backend-fin
+      context: ./backend
       dockerfile: Dockerfile.backend
     container_name: graphql-server
     restart: unless-stopped
