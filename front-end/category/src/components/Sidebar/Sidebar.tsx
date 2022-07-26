@@ -5,12 +5,14 @@ import styles from './Sidebar.module.scss';
 const Header: React.FC = () => {
     return (
         <Layout.Sider className={styles.sidebar}>
-            <Typography.Title
-                level={2}
-                className={styles.title}
-            >
-                Graphql {'&'} MFE
-            </Typography.Title>
+            <div className={styles.titleWrapper}>
+                <Typography.Title
+                    level={2}
+                    className={styles.title}
+                >
+                    Categories
+                </Typography.Title>
+            </div>
         </Layout.Sider>
     )
 }
