@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+        "jsx": "react-jsx",
+        "module": "ESNext",
+        "target": "ESNext",
+        "esModuleInterop": true,
+        "moduleResolution": "Node",
+        "rootDir": "./src",
+        "newLine": "lf",
+        "outDir": "dist",
+        "strict": true,
+        "noImplicitAny": true,
+        "paths": {
+            "@components": ["components"],
+            "@pages": ["pages"],
+        }
+    }
+}

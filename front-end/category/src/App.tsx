@@ -1,15 +1,14 @@
-import React from "react";
 import ReactDOM from "react-dom/client";
+import { ConfigProvider } from 'antd';
+import ptBR from 'antd/lib/locale/pt_BR';
 
+import { HomePage } from "@pages";
 import "./index.css";
 
 const App = () => (
-  <div className="container">
-    <div>Name: Category</div>
-    <div>Framework: react</div>
-    <div>Language: TypeScript</div>
-    <div>CSS: Empty CSS</div>
-  </div>
+  <ConfigProvider locale={ptBR}>
+    <HomePage />
+  </ConfigProvider>
 );
 
 function getBaseElementOrFail(elementId: string): Element {
@@ -18,5 +17,7 @@ function getBaseElementOrFail(elementId: string): Element {
     return element;
 }
 
-const root = ReactDOM.createRoot(getBaseElementOrFail('root'));
-root.render(<App />);
+if (process.env.NODE_ENV) {
+    const root = ReactDOM.createRoot(getBaseElementOrFail('root'));
+    root.render(<App />);
+}
