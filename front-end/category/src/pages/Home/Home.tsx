@@ -1,8 +1,13 @@
-import { Header } from '@components';
+import { Layout } from 'antd';
+import { Sidebar } from '@components';
+
+import styles from './Home.module.scss';
 
 const HomePage: React.FC = () => {
     return (
-        <Header />
+        <Layout className={styles.container}>
+            <Sidebar />
+        </Layout>
     );
 }
 

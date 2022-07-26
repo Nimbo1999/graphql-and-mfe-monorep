@@ -3,7 +3,8 @@ import { ConfigProvider } from 'antd';
 import ptBR from 'antd/lib/locale/pt_BR';
 
 import { HomePage } from "@pages";
-import "./index.css";
+
+if (process.env.NODE_ENV) import("./index.scss");
 
 const App = () => (
   <ConfigProvider locale={ptBR}>

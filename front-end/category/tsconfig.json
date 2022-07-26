@@ -1,19 +1,21 @@
 {
     "compilerOptions": {
-        "baseUrl": "src",
+        "rootDir": "./src",
+        "baseUrl": "./src",
         "jsx": "react-jsx",
         "module": "ESNext",
         "target": "ESNext",
         "esModuleInterop": true,
         "moduleResolution": "Node",
-        "rootDir": "./src",
         "newLine": "lf",
         "outDir": "dist",
         "strict": true,
         "noImplicitAny": true,
+        "types": ["node"],
         "paths": {
             "@components": ["components"],
             "@pages": ["pages"],
-        }
-    }
+        },
+    },
+    "include": ["./src", "src/declarations.d.ts"],
 }

@@ -1,5 +1,3 @@
-import 'node';
-
 declare module '*.scss';
 declare module '*.sass';
 
