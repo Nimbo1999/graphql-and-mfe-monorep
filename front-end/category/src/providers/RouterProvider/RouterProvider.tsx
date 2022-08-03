@@ -12,9 +12,11 @@ const RouterProvider: React.FC = () => {
             <Layout className={styles.container}>
                 <Sidebar />
                 <Routes>
-                    <Route path="/" element={<HomePage />} />
-                    <Route path="/category" element={<CategoryPage />} />
-                    <Route path="/*" element={<NotFound />} />
+                    <Route path="/">
+                        <Route index element={<HomePage />} />
+                        <Route path=":categoryId" element={<CategoryPage />} />
+                        <Route path="/*" element={<NotFound />} />
+                    </Route>
                 </Routes>
             </Layout>
         </BrowserRouter>
