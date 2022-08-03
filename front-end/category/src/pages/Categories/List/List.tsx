@@ -1,9 +1,10 @@
-import { Table, Card, Button, Tooltip, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import EditOutlined from '@ant-design/icons/EditOutlined';
+import { Table, Card, Button, Tooltip, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
+import EditOutlined from '@ant-design/icons/EditOutlined';
 
-import useCategories from '../../../hooks/useCategories';
+import CategoryRoutes from '@constants/CategoryRoutes';
+import useCategories from '@hooks/useCategories';
 
 import type { Category } from 'models/category';
 
@@ -18,6 +19,8 @@ const Categories: React.FC = () => {
         const time = new Date(Number(value)).toLocaleTimeString();
         return `${date} at ${time}`;
     };
+
+    const navigateToCreateCategory = () => navigate(CategoryRoutes.CREATE_CATEGORY);
 
     const columns: ColumnsType<Category> = [
         {
@@ -68,7 +71,7 @@ const Categories: React.FC = () => {
                     type="primary"
                     size="large"
                     shape="round"
-                    onClick={() => alert('Create category')}
+                    onClick={navigateToCreateCategory}
                 >
                     Create Category
                 </Button>
