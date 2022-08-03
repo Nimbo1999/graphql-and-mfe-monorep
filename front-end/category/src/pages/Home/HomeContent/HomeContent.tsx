@@ -8,11 +8,10 @@ import styles from './HomeContent.module.scss';
 const HomeContent: React.FC = () => {
     return (
         <Layout.Content>
-            <Row gutter={[16, 16]}>
+            <Row gutter={[0, 16]}>
                 <Col xs={24}>
                     <PageHeader
-                        title="Category list"
-                        subTitle="Availables categories"
+                        title="Manage"
                         onBack={undefined}
                         ghost={false}
                     />

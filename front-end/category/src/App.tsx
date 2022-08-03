@@ -1,16 +1,16 @@
-import ReactDOM from "react-dom/client";
+import ReactDOM from 'react-dom/client';
 import { ConfigProvider } from 'antd';
 import ptBR from 'antd/lib/locale/pt_BR';
 
-import { HomePage } from "@pages";
+import { RouterProvider } from '@providers';
 import GraphqlProvider from './providers/GraphqlProvider';
 
-if (process.env.NODE_ENV) import("./index.scss");
+if (process.env.NODE_ENV) import('./index.scss');
 
 const App = () => (
     <GraphqlProvider>
         <ConfigProvider locale={ptBR}>
-            <HomePage />
+            <RouterProvider />
         </ConfigProvider>
     </GraphqlProvider>
 );

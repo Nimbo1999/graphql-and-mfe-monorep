@@ -1,48 +1,10 @@
-import { Table } from 'antd';
+import { Table, Card, Button, Tooltip } from 'antd';
+import EditOutlined from '@ant-design/icons/EditOutlined';
 import type { ColumnsType } from 'antd/es/table';
 
 import useCategories from '../../../hooks/useCategories';
 
 import type { Category } from 'models/category';
-
-// const data: Category[] = [
-//     {
-//         id: 1,
-//         name: 'Test',
-//         meta: {
-//             id: 1,
-//             createdAt: new Date().toISOString(),
-//             lastModifiedAt: new Date().toISOString(),
-//         },
-//     },
-//     {
-//         id: 2,
-//         name: 'Test2',
-//         meta: {
-//             id: 2,
-//             createdAt: new Date().toISOString(),
-//             lastModifiedAt: new Date().toISOString(),
-//         },
-//     },
-//     {
-//         id: 3,
-//         name: 'Test3',
-//         meta: {
-//             id: 3,
-//             createdAt: new Date().toISOString(),
-//             lastModifiedAt: new Date().toISOString(),
-//         },
-//     },
-//     {
-//         id: 4,
-//         name: 'Test4',
-//         meta: {
-//             id: 4,
-//             createdAt: new Date().toISOString(),
-//             lastModifiedAt: new Date().toISOString(),
-//         },
-//     }
-// ]
 
 const columns: ColumnsType<Category> = [
     {
@@ -65,6 +27,18 @@ const columns: ColumnsType<Category> = [
         render(_, record) {
             return new Date(Number(record.meta.lastModifiedAt)).toLocaleDateString();
         },
+    },
+    {
+        title: 'Actions',
+        dataIndex: 'id',
+        key: 'id',
+        render(_, record) {
+            return (
+                <div>
+                    <Button icon={<EditOutlined />} type="link" onClick={() => alert('Hey')} />
+                </div>
+            )
+        }
     }
 ];
 
@@ -76,11 +50,14 @@ const Categories: React.FC = () => {
     );
 
     return (
-        <Table
-            columns={columns}
-            dataSource={data?.findAllCategoryByName}
-            loading={loading}
-        />
+        <Card title="Category List" loading={loading}>
+            <Table
+                columns={columns}
+                dataSource={data?.findAllCategoryByName}
+                loading={loading}
+                bordered
+            />
+        </Card>
     );
 }
 
