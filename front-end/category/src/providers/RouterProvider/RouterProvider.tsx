@@ -1,8 +1,8 @@
 import { Layout } from 'antd';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import { Sidebar } from '@components';
-import { HomePage, NotFound, CategoryPage } from '@pages';
+import { CategoriesPage, NotFoundPage, CategoryPage } from '@pages';
+import CategoryRoutes from '@constants/CategoryRoutes';
 
 import styles from './RouterProvider.module.scss';
 
@@ -10,12 +10,12 @@ const RouterProvider: React.FC = () => {
     return (
         <BrowserRouter>
             <Layout className={styles.container}>
-                <Sidebar />
                 <Routes>
-                    <Route path="/">
-                        <Route index element={<HomePage />} />
-                        <Route path=":categoryId" element={<CategoryPage />} />
-                        <Route path="/*" element={<NotFound />} />
+                    <Route path={CategoryRoutes.HOME}>
+                        <Route index element={<CategoriesPage />} />
+                        <Route path={CategoryRoutes.CREATE_CATEGORY} element={<CategoryPage />} />
+                        <Route path=":id" element={<CategoryPage />} />
+                        <Route path={CategoryRoutes.NOT_FOUND} element={<NotFoundPage />} />
                     </Route>
                 </Routes>
             </Layout>

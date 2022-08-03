@@ -21,7 +21,5 @@ function getBaseElementOrFail(elementId: string): Element {
     return element;
 }
 
-if (process.env.NODE_ENV) {
-    const root = ReactDOM.createRoot(getBaseElementOrFail('root'));
-    root.render(<App />);
-}
+const root = ReactDOM.createRoot(getBaseElementOrFail('root'));
+root.render(<App />);

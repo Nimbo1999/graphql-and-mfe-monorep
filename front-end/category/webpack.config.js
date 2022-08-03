@@ -15,7 +15,8 @@ module.exports = {
         "@pages": path.resolve(__dirname, 'src/pages'),
         "@providers": path.resolve(__dirname, 'src/providers'),
         "@hooks": path.resolve(__dirname, 'src/hooks'),
-        "@models": path.resolve(__dirname, 'src/models')
+        "@models": path.resolve(__dirname, 'src/models'),
+        "@constants": path.resolve(__dirname, 'src/constants'),
     }
   },
 

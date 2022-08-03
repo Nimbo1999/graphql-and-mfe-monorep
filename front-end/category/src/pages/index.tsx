@@ -1,3 +1,3 @@
-export { default as HomePage } from './Home/Home';
+export { default as CategoriesPage } from './Categories/Categories';
 export { default as CategoryPage } from './Category/Category';
-export { default as NotFound } from './NotFound/NotFound';
+export { default as NotFoundPage } from './NotFound/NotFound';

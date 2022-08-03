@@ -1,4 +1,4 @@
-import { Table, Card, Button, Tooltip } from 'antd';
+import { Table, Card, Button, Tooltip, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import EditOutlined from '@ant-design/icons/EditOutlined';
 import type { ColumnsType } from 'antd/es/table';
@@ -13,6 +13,12 @@ const Categories: React.FC = () => {
 
     if (!!error) return <h2>Error! {JSON.stringify(error)}</h2>;
 
+    const renderCategoryDates = (value: string): string => {
+        const date = new Date(Number(value)).toLocaleDateString();
+        const time = new Date(Number(value)).toLocaleTimeString();
+        return `${date} at ${time}`;
+    };
+
     const columns: ColumnsType<Category> = [
         {
             title: 'Name',
@@ -21,19 +27,13 @@ const Categories: React.FC = () => {
         },
         {
             title: 'Created At',
-            dataIndex: 'meta.createdAt',
-            key: 'meta.createdAt',
-            render(_, record) {
-                return new Date(Number(record.meta.createdAt)).toLocaleDateString();
-            }
+            dataIndex: ['meta', 'createdAt'],
+            render: renderCategoryDates
         },
         {
             title: 'Last modified At',
-            dataIndex: 'meta.lastModifiedAt',
-            key: 'meta.lastModifiedAt',
-            render(_, record) {
-                return new Date(Number(record.meta.lastModifiedAt)).toLocaleDateString();
-            }
+            dataIndex: ['meta', 'lastModifiedAt'],
+            render: renderCategoryDates
         },
         {
             title: 'Actions',
@@ -57,10 +57,19 @@ const Categories: React.FC = () => {
 
     return (
         <Card
-            title="Category List"
+            title={
+                <Typography.Title level={2} type="secondary">
+                    Categories
+                </Typography.Title>
+            }
             loading={loading}
             extra={[
-                <Button type="primary" onClick={() => alert('Create category')}>
+                <Button
+                    type="primary"
+                    size="large"
+                    shape="round"
+                    onClick={() => alert('Create category')}
+                >
                     Create Category
                 </Button>
             ]}
@@ -70,6 +79,8 @@ const Categories: React.FC = () => {
                 dataSource={data?.findAllCategoryByName}
                 loading={loading}
                 bordered
+                rowKey={({ id }) => id}
+                size="large"
             />
         </Card>
     );
