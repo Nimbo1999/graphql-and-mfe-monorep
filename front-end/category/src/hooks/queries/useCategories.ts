@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 
-const GET_CATEGORIES = gql`
+export const GET_CATEGORIES = gql`
     query listCategories {
         findAllCategoryByName {
             id
@@ -16,6 +16,6 @@ const GET_CATEGORIES = gql`
 
 const useCategories = () => {
     return useQuery(GET_CATEGORIES);
-}
+};
 
 export default useCategories;

@@ -4,7 +4,7 @@ import type { ColumnsType } from 'antd/es/table';
 import EditOutlined from '@ant-design/icons/EditOutlined';
 
 import CategoryRoutes from '@constants/CategoryRoutes';
-import useCategories from '@hooks/useCategories';
+import useCategories from '@hooks/queries/useCategories';
 
 import type { Category } from 'models/category';
 

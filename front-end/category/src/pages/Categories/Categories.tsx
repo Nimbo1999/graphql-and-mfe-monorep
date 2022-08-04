@@ -8,7 +8,7 @@ const Categories: React.FC = () => {
         <Layout.Content>
             <Row gutter={[0, 16]}>
                 <Col xs={24}>
-                    <PageHeader title="Manage" onBack={undefined} ghost={false} />
+                    <PageHeader title="List of category" onBack={undefined} ghost={false} />
                 </Col>
 
                 <Col xs={24}>

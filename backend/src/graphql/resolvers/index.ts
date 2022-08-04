@@ -1,4 +1,9 @@
-import { findAllCategoryByName, findAllFinance, findFinanceById } from './queries/index.js';
+import {
+    findAllCategoryByName,
+    findAllFinance,
+    findFinanceById,
+    findCategoryById
+} from './queries/index.js';
 import {
     addCategory,
     addFinance,
@@ -12,7 +17,8 @@ export const resolvers = {
     Query: {
         findAllCategoryByName,
         findAllFinance,
-        findFinanceById
+        findFinanceById,
+        findCategoryById
     },
     Mutation: {
         addCategory,
