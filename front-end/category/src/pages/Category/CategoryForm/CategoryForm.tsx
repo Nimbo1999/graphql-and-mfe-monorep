@@ -39,6 +39,7 @@ const CategoryForm: React.FC = () => {
     const onReset = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         form.resetFields();
+        navigate(CategoryRoutes.HOME, { replace: true });
     };
 
     useEffect(() => {
