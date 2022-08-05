@@ -1,4 +1,9 @@
 import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import { type Category } from '@models/category';
+import { type Metadata } from '@models/Metadata';
+
+type MetaResponse = Omit<Metadata, 'id'>;
+type CategoryResponse = Omit<Category, 'id' | 'meta'> & { meta: MetaResponse };
 
 export const GET_CATEGORY = gql`
     query getCategory($id: Int!) {
@@ -12,8 +17,9 @@ export const GET_CATEGORY = gql`
     }
 `;
 
-const useGetCategory = () => useLazyQuery(GET_CATEGORY);
+const useGetCategory = () => useLazyQuery<{ findCategoryById: CategoryResponse }>(GET_CATEGORY);
 
-const useCachedCategory = (id?: number) => !!id && useQuery(GET_CATEGORY, { variables: { id } });
+const useCachedCategory = (id?: number) =>
+    !!id && useQuery<{ findCategoryById: CategoryResponse }>(GET_CATEGORY, { variables: { id } });
 
 export { useGetCategory, useCachedCategory };

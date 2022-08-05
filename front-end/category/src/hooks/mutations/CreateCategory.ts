@@ -10,6 +10,8 @@ export const CREATE_CATEGORY = gql`
 `;
 
 const useCreateCategoryMutation = () =>
-    useMutation(CREATE_CATEGORY, { refetchQueries: [{ query: GET_CATEGORIES }] });
+    useMutation<{ addCategory: { id: number } }>(CREATE_CATEGORY, {
+        refetchQueries: [{ query: GET_CATEGORIES }]
+    });
 
 export default useCreateCategoryMutation;

@@ -3,13 +3,16 @@ import { Layout, Row, Col, PageHeader, Card, Typography, Spin } from 'antd';
 import { useParams, useNavigate } from 'react-router-dom';
 
 import { useGetCategory } from '@hooks/queries/GetCategory';
+import { toLocaleDateString, toLocaleTimeString } from '@utils/Date.utils';
 
 import CategoryForm from './CategoryForm/CategoryForm';
+
+import styles from './Category.module.scss';
 
 const Category: React.FC = () => {
     const params = useParams();
     const navigate = useNavigate();
-    const [getCategory, { called }] = useGetCategory();
+    const [getCategory, { called, data }] = useGetCategory();
 
     const isOnEditMode = useMemo(() => Object.keys(params).length > 0, [params]);
 
@@ -24,6 +27,12 @@ const Category: React.FC = () => {
 
         fetchCategories();
     }, [params]);
+
+    const toDateTime = (value: string) => {
+        const date = toLocaleDateString(value);
+        const time = toLocaleTimeString(value);
+        return `${date} at ${time}`;
+    };
 
     if (!!params?.id && !called)
         return (
@@ -42,9 +51,25 @@ const Category: React.FC = () => {
                 <Col xs={12} offset={6}>
                     <Card
                         title={
-                            <Typography.Title level={2} type="secondary">
-                                Please fill the input
-                            </Typography.Title>
+                            <header>
+                                <Typography.Title level={2} type="secondary">
+                                    Please fill the input
+                                </Typography.Title>
+
+                                {isOnEditMode && !!data && (
+                                    <div className={styles.date}>
+                                        <Typography.Text type="secondary">
+                                            Created at:{' '}
+                                            {toDateTime(data.findCategoryById.meta.createdAt)}
+                                        </Typography.Text>
+
+                                        <Typography.Text type="secondary">
+                                            Last modified at:{' '}
+                                            {toDateTime(data.findCategoryById.meta.lastModifiedAt)}
+                                        </Typography.Text>
+                                    </div>
+                                )}
+                            </header>
                         }
                     >
                         <CategoryForm />
