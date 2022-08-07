@@ -8,6 +8,7 @@ type CategoryResponse = Omit<Category, 'id' | 'meta'> & { meta: MetaResponse };
 export const GET_CATEGORY = gql`
     query getCategory($id: Int!) {
         findCategoryById(id: $id) {
+            id
             name
             meta {
                 createdAt
@@ -20,12 +21,10 @@ export const GET_CATEGORY = gql`
 const useGetCategory = () => useLazyQuery<{ findCategoryById: CategoryResponse }>(GET_CATEGORY);
 
 const useCachedCategory = (id?: number): { findCategoryById: CategoryResponse } | null => {
-    const client = useApolloClient();
-    const { cache } = client;
+    const { cache } = useApolloClient();
 
-    return client.readQuery({
+    return cache.readQuery({
         query: GET_CATEGORY,
-        id: cache.identify({ id, __typename: 'Category' }),
         variables: { id }
     });
 };

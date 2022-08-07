@@ -22,9 +22,9 @@ const CategoryForm: React.FC = () => {
     const [createCategory, { loading: loadingCreateCall }] = useCreateCategory();
     const [editCategory, { loading: loadingEditCall }] = useUpdateCategory(Number(params?.id));
 
-    const isOnEditMode = useMemo(() => Object.keys(params).length > 0, [params]);
-
     const fechedCategory = useCachedCategory(Number(params?.id || -1));
+
+    const isOnEditMode = useMemo(() => Object.keys(params).length > 0, [params]);
 
     const loading = useMemo(
         (): boolean => loadingCreateCall || loadingEditCall,

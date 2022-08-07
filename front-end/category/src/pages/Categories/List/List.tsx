@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { Table, Card, Button, Tooltip, Typography } from 'antd';
+import { Table, Card, Button, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
-import EditOutlined from '@ant-design/icons/EditOutlined';
-import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
 
 import CategoryRoutes from '@constants/CategoryRoutes';
 import { useGetCategories } from '@hooks/queries';
@@ -10,7 +8,7 @@ import { useDeleteCategory } from '@hooks/mutations';
 
 import type { Category } from 'models/category';
 
-import styles from './List.module.scss';
+import ActionColumn from './ActionColumn/ActionColumn';
 
 const Categories: React.FC = () => {
     const navigate = useNavigate();
@@ -35,43 +33,21 @@ const Categories: React.FC = () => {
         },
         {
             title: 'Created At',
-            dataIndex: ['meta', 'createdAt'],
+            dataIndex: 'createdAt',
+            key: 'createdAt',
             render: renderCategoryDates
         },
         {
             title: 'Last modified At',
-            dataIndex: ['meta', 'lastModifiedAt'],
+            dataIndex: 'lastModifiedAt',
+            key: 'lastModifiedAt',
             render: renderCategoryDates
         },
         {
             title: 'Actions',
             dataIndex: 'id',
             key: 'id',
-            render(_, record) {
-                const { id } = record;
-                return (
-                    <div className={styles.actionButtons}>
-                        <Tooltip title="Edit Category">
-                            <Button
-                                icon={<EditOutlined />}
-                                type="link"
-                                onClick={() => navigate(`/${id}`)}
-                            />
-                        </Tooltip>
-
-                        <Tooltip title="Delete Category">
-                            <Button
-                                icon={<DeleteOutlined />}
-                                type="link"
-                                danger
-                                loading={deleteCategoryLoading}
-                                disabled={deleteCategoryLoading}
-                                onClick={() => deleteCategory({ variables: { id } })}
-                            />
-                        </Tooltip>
-                    </div>
-                );
-            }
+            render: id => <ActionColumn key={id} id={id} />
         }
     ];
 
@@ -100,6 +76,7 @@ const Categories: React.FC = () => {
                 loading={getCategoryLoading}
                 bordered
                 rowKey={({ id }) => id}
+                key="id"
                 size="large"
             />
         </Card>
