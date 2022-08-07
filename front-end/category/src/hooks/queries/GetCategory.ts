@@ -1,4 +1,4 @@
-import { gql, useLazyQuery, useQuery } from '@apollo/client';
+import { gql, useLazyQuery, useApolloClient } from '@apollo/client';
 import { type Category } from '@models/category';
 import { type Metadata } from '@models/Metadata';
 
@@ -19,7 +19,15 @@ export const GET_CATEGORY = gql`
 
 const useGetCategory = () => useLazyQuery<{ findCategoryById: CategoryResponse }>(GET_CATEGORY);
 
-const useCachedCategory = (id?: number) =>
-    !!id && useQuery<{ findCategoryById: CategoryResponse }>(GET_CATEGORY, { variables: { id } });
+const useCachedCategory = (id?: number): { findCategoryById: CategoryResponse } | null => {
+    const client = useApolloClient();
+    const { cache } = client;
+
+    return client.readQuery({
+        query: GET_CATEGORY,
+        id: cache.identify({ id, __typename: 'Category' }),
+        variables: { id }
+    });
+};
 
 export { useGetCategory, useCachedCategory };

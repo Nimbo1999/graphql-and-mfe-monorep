@@ -2,15 +2,20 @@ import { useNavigate } from 'react-router-dom';
 import { Table, Card, Button, Tooltip, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import EditOutlined from '@ant-design/icons/EditOutlined';
+import DeleteOutlined from '@ant-design/icons/DeleteOutlined';
 
 import CategoryRoutes from '@constants/CategoryRoutes';
-import useCategories from '@hooks/queries/useCategories';
+import { useGetCategories } from '@hooks/queries';
+import { useDeleteCategory } from '@hooks/mutations';
 
 import type { Category } from 'models/category';
 
+import styles from './List.module.scss';
+
 const Categories: React.FC = () => {
-    const { data, loading, error } = useCategories();
     const navigate = useNavigate();
+    const [deleteCategory, { loading: deleteCategoryLoading }] = useDeleteCategory();
+    const { data, loading: getCategoryLoading, error } = useGetCategories();
 
     if (!!error) return <h2>Error! {JSON.stringify(error)}</h2>;
 
@@ -43,13 +48,25 @@ const Categories: React.FC = () => {
             dataIndex: 'id',
             key: 'id',
             render(_, record) {
+                const { id } = record;
                 return (
-                    <div>
+                    <div className={styles.actionButtons}>
                         <Tooltip title="Edit Category">
                             <Button
                                 icon={<EditOutlined />}
                                 type="link"
-                                onClick={() => navigate(`/${record.id}`)}
+                                onClick={() => navigate(`/${id}`)}
+                            />
+                        </Tooltip>
+
+                        <Tooltip title="Delete Category">
+                            <Button
+                                icon={<DeleteOutlined />}
+                                type="link"
+                                danger
+                                loading={deleteCategoryLoading}
+                                disabled={deleteCategoryLoading}
+                                onClick={() => deleteCategory({ variables: { id } })}
                             />
                         </Tooltip>
                     </div>
@@ -65,7 +82,7 @@ const Categories: React.FC = () => {
                     Categories
                 </Typography.Title>
             }
-            loading={loading}
+            loading={getCategoryLoading}
             extra={[
                 <Button
                     type="primary"
@@ -80,7 +97,7 @@ const Categories: React.FC = () => {
             <Table
                 columns={columns}
                 dataSource={data?.findAllCategoryByName}
-                loading={loading}
+                loading={getCategoryLoading}
                 bordered
                 rowKey={({ id }) => id}
                 size="large"

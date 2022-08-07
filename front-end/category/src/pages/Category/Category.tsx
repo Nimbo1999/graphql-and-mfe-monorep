@@ -2,7 +2,7 @@ import { useMemo, useEffect } from 'react';
 import { Layout, Row, Col, PageHeader, Card, Typography, Spin } from 'antd';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { useGetCategory } from '@hooks/queries/GetCategory';
+import { useGetCategory } from '@hooks/queries';
 import { toLocaleDateString, toLocaleTimeString } from '@utils/Date.utils';
 
 import CategoryForm from './CategoryForm/CategoryForm';
@@ -19,13 +19,13 @@ const Category: React.FC = () => {
     const pageTitle = isOnEditMode ? 'Edit category' : 'Create category';
 
     useEffect(() => {
-        const fetchCategories = () => {
+        const fetchCategory = () => {
             // TODO: change this line into a throwlable exeption
             if (!params?.id) return;
             getCategory({ variables: { id: Number(params.id) } });
         };
 
-        fetchCategories();
+        fetchCategory();
     }, [params]);
 
     const toDateTime = (value: string) => {

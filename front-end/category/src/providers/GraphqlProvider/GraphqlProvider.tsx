@@ -1,4 +1,6 @@
-import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { ApolloClient, ApolloProvider } from '@apollo/client';
+
+import cache from './InMemoryCache';
 
 interface GraphqlProviderProps {
     children: React.ReactNode;
@@ -7,14 +9,10 @@ interface GraphqlProviderProps {
 const GraphqlProvider: React.FC<GraphqlProviderProps> = ({ children }) => {
     const client = new ApolloClient({
         uri: 'http://localhost:8000',
-        cache: new InMemoryCache()
+        cache
     });
 
-    return (
-        <ApolloProvider client={client}>
-            {children}
-        </ApolloProvider>
-    );
-}
+    return <ApolloProvider client={client}>{children}</ApolloProvider>;
+};
 
 export default GraphqlProvider;
