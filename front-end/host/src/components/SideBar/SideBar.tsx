@@ -20,7 +20,7 @@ const SideBar: React.FC = () => {
     };
 
     return (
-        <Layout.Sider className={classNames}>
+        <Layout.Sider className={classNames} collapsed={expanded}>
             <header className={styles.sideBarHeader}>
                 <Button type="link" htmlType="button" onClick={onClickExpandButton}>
                     <MenuOutlined className={styles.icon} />
@@ -31,7 +31,7 @@ const SideBar: React.FC = () => {
                 </Typography.Title>
             </header>
 
-            <Menus collapse={expanded} />
+            <Menus />
         </Layout.Sider>
     );
 };

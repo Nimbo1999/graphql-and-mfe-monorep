@@ -11,6 +11,7 @@ module.exports = {
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", ".json", '.scss'],
     alias: {
+        "@apps": path.resolve(__dirname, 'src/apps'),
         "@components": path.resolve(__dirname, 'src/components'),
         "@utils": path.resolve(__dirname, 'src/utils')
     }
@@ -29,6 +30,7 @@ module.exports = {
         resolve: {
           fullySpecified: false,
         },
+        use: 'source-map-loader'
       },
       {
         test: /\.(css|s[ac]ss)$/i,
@@ -38,7 +40,7 @@ module.exports = {
         test: /\.(ts|tsx|js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
         },
       },
     ],
@@ -48,7 +50,9 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "host",
       filename: "remoteEntry.js",
-      remotes: {},
+      remotes: {
+        category: 'category@http://localhost:3001/remoteEntry.js'
+      },
       exposes: {},
       shared: {
         ...deps,

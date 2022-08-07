@@ -4,11 +4,7 @@ import DollarCircleOutlined from '@ant-design/icons/DollarCircleOutlined';
 
 type MenuItem = MenuProps['items'];
 
-type MenusProps = {
-    collapse: boolean;
-};
-
-const Menus: React.FC<MenusProps> = ({ collapse }) => {
+const Menus: React.FC = () => {
     const items: MenuItem = [
         {
             label: 'Finance',
@@ -22,16 +18,7 @@ const Menus: React.FC<MenusProps> = ({ collapse }) => {
         }
     ];
 
-    return (
-        <Menu
-            selectedKeys={['finance']}
-            items={items}
-            theme="dark"
-            inlineCollapsed={collapse}
-            mode="inline"
-            aria-expanded={collapse}
-        />
-    );
+    return <Menu selectedKeys={['finance']} items={items} theme="dark" mode="inline" />;
 };
 
 export default Menus;

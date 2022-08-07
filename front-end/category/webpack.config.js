@@ -35,6 +35,7 @@ module.exports = {
         resolve: {
           fullySpecified: false,
         },
+        use: 'source-map-loader'
       },
       {
         test: /\.(css|s[ac]ss)$/i,
