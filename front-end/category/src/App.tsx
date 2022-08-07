@@ -5,7 +5,7 @@ import ptBR from 'antd/lib/locale/pt_BR';
 import { RouterProvider } from '@providers';
 import GraphqlProvider from './providers/GraphqlProvider/GraphqlProvider';
 
-if (process.env.NODE_ENV) import('./index.scss');
+import './index.scss';
 
 const App = () => (
     <GraphqlProvider>

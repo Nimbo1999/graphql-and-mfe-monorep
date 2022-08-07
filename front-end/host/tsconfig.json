@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "rootDir": "./src",
+        "baseUrl": "./src",
+        "jsx": "react-jsx",
+        "module": "ESNext",
+        "target": "ESNext",
+        "esModuleInterop": true,
+        "moduleResolution": "Node",
+        "sourceMap": true,
+        "newLine": "lf",
+        "outDir": "dist",
+        "strict": true,
+        "noImplicitAny": true,
+        "types": ["node"],
+        "paths": {
+            "@components": ["components"],
+            "@components/*": ["components/*"],
+            "@utils": ["utils"],
+            "@utils/*": ["utils/*"]
+        },
+    },
+    "include": ["./src", "./src/declarations.d.ts"],
+}

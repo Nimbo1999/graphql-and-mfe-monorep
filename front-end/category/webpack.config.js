@@ -52,10 +52,12 @@ module.exports = {
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "host",
+      name: "category",
       filename: "remoteEntry.js",
       remotes: {},
-      exposes: {},
+      exposes: {
+        './CategoryApp': path.join(__dirname, 'src', 'api', 'App.tsx')
+      },
       shared: {
         ...deps,
         react: {

@@ -1,3 +1,4 @@
+const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 
@@ -8,7 +9,11 @@ module.exports = {
   },
 
   resolve: {
-    extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
+    extensions: [".tsx", ".ts", ".jsx", ".js", ".json", '.scss'],
+    alias: {
+        "@components": path.resolve(__dirname, 'src/components'),
+        "@utils": path.resolve(__dirname, 'src/utils')
+    }
   },
 
   devServer: {
@@ -27,7 +32,7 @@ module.exports = {
       },
       {
         test: /\.(css|s[ac]ss)$/i,
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        use: ["style-loader", "css-loader", "sass-loader", "postcss-loader"],
       },
       {
         test: /\.(ts|tsx|js|jsx)$/,

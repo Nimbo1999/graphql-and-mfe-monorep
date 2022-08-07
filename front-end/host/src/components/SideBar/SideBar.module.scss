@@ -1,0 +1,37 @@
+.container {
+    padding: .5rem;
+    flex: 0 0 80px!important;
+    width: 80px!important;
+    max-width: 80px!important;
+    min-width: 0!important;
+
+    &.expanded {
+        flex: 0 0 250px!important;
+        max-width: 250px!important;
+        width: 250px!important;
+
+        .sideBarTitle {
+            opacity: 1;
+            transform: translate(0, 0);
+        }
+    }
+}
+
+.sideBarHeader {
+    display: flex;
+    align-items: center;
+
+    .icon {
+        color: white!important;
+        font-size: 24px;
+    }
+
+    .sideBarTitle {
+        transition: opacity 200ms ease-in, transform 200ms ease-in;
+        color: white!important;
+        opacity: 0;
+        margin: 0;
+        transform: translate(-20px, 0);
+    }
+}
+

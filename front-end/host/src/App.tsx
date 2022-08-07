@@ -1,22 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from 'react-dom/client';
+import { Layout } from 'antd';
 
-import "./index.css";
+import { getBaseElementOrFail } from '@utils/Dom.utils';
+import { SideBar } from '@components';
+
+import './index.scss';
+import styles from './App.module.scss';
 
 const App = () => (
-  <div className="container">
-    <div>Name: host</div>
-    <div>Framework: react</div>
-    <div>Language: TypeScript</div>
-    <div>CSS: Empty CSS</div>
-  </div>
+    <Layout className={styles.container}>
+        <SideBar />
+    </Layout>
 );
-
-function getBaseElementOrFail(elementId: string): Element {
-    const element = document.getElementById(elementId);
-    if (element === null) throw new Error(`Could not found the #${elementId} element!`);
-    return element;
-}
 
 const root = ReactDOM.createRoot(getBaseElementOrFail('root'));
 root.render(<App />);
