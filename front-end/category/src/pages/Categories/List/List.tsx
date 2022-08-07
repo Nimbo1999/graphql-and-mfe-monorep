@@ -1,26 +1,34 @@
 import { useNavigate } from 'react-router-dom';
-import { Table, Card, Button, Typography } from 'antd';
+import { Table, Card, Button, Typography, Tag } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 
 import CategoryRoutes from '@constants/CategoryRoutes';
 import CategoryAdapter, { type CategoryRecord } from '@adapters/CategoryAdapter';
 
 import { useGetCategories } from '@hooks/queries';
-import { useDeleteCategory } from '@hooks/mutations';
 
 import ActionColumn from './ActionColumn/ActionColumn';
 
+import styles from './List.module.scss';
+
 const Categories: React.FC = () => {
     const navigate = useNavigate();
-    const [deleteCategory, { loading: deleteCategoryLoading }] = useDeleteCategory();
     const { data, loading: getCategoryLoading, error } = useGetCategories();
 
     if (!!error) return <h2>Error! {JSON.stringify(error)}</h2>;
 
-    const renderCategoryDates = (value: string): string => {
+    const renderCategoryDates = (value: string): JSX.Element => {
         const date = new Date(Number(value)).toLocaleDateString();
         const time = new Date(Number(value)).toLocaleTimeString();
-        return `${date} at ${time}`;
+        return (
+            <>
+                <Tag color="blue">{date}</Tag>
+
+                <span className={styles.atSpan}>at</span>
+
+                <Tag color="blue">{time}</Tag>
+            </>
+        );
     };
 
     const navigateToCreateCategory = () => navigate(CategoryRoutes.CREATE_CATEGORY);
