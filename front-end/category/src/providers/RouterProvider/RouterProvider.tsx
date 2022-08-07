@@ -9,11 +9,15 @@ import styles from './RouterProvider.module.scss';
 
 export type RouterProviderProps = {
     history?: History;
+    basename?: string;
 };
 
-const RouterProvider: React.FC<RouterProviderProps> = ({ history = createBrowserHistory() }) => {
+const RouterProvider: React.FC<RouterProviderProps> = ({
+    history = createBrowserHistory(),
+    basename
+}) => {
     return (
-        <HistoryRouter history={history}>
+        <HistoryRouter history={history} basename={basename}>
             <Layout className={styles.container}>
                 <Routes>
                     <Route path={CategoryRoutes.HOME}>

@@ -7,18 +7,23 @@ import { GraphqlProvider, RouterProvider } from '@providers';
 
 type AppWrapperProps = {
     history: History;
+    basename?: string;
 };
 
-const AppWrapper: React.FC<AppWrapperProps> = ({ history }) => {
+const AppWrapper: React.FC<AppWrapperProps> = ({ history, basename }) => {
     return (
         <GraphqlProvider>
             <ConfigProvider locale={ptBR}>
-                <RouterProvider history={history} />
+                <RouterProvider history={history} basename={basename} />
             </ConfigProvider>
         </GraphqlProvider>
     );
 };
 
-export const mountApp = (element: HTMLElement, history: History) => {
-    return ReactDom.createRoot(element).render(<AppWrapper history={history} />);
+type MountOptions = AppWrapperProps;
+
+export const mountApp = (element: HTMLElement, options: MountOptions) => {
+    return ReactDom.createRoot(element).render(
+        <AppWrapper history={options.history} basename={options.basename} />
+    );
 };

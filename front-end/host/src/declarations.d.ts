@@ -12,7 +12,11 @@ declare module '*.module.sass' {
 }
 
 declare module 'category/CategoryApp' {
-    type MountFunction = (element: HTMLElement, history: History) => JSX.Element;
+    type MountOptions = {
+        history: import('history').History;
+        basename?: string;
+    };
+    type MountFunction = (element: HTMLElement, options: MountOptions) => JSX.Element;
     const mountApp: MountFunction;
     export { mountApp };
 }
