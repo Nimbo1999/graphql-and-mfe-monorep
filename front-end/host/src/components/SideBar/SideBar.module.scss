@@ -1,8 +1,8 @@
 .container {
+    flex: 0 0 76px!important;
     padding: .5rem;
-    flex: 0 0 80px!important;
-    width: 80px!important;
-    max-width: 80px!important;
+    width: 76px!important;
+    max-width: 76px!important;
     min-width: 0!important;
 
     &.expanded {
@@ -20,6 +20,7 @@
 .sideBarHeader {
     display: flex;
     align-items: center;
+    margin: 0px 0px 24px 0px;
 
     .icon {
         color: white!important;

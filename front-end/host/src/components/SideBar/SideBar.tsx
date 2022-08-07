@@ -3,6 +3,7 @@ import MenuOutlined from '@ant-design/icons/MenuOutlined';
 
 import styles from './SideBar.module.scss';
 import { useMemo, useState } from 'react';
+import Menus from './Menus/Menus';
 
 const SideBar: React.FC = () => {
     const [expanded, setExpanded] = useState<boolean>(false);
@@ -29,6 +30,8 @@ const SideBar: React.FC = () => {
                     Finance
                 </Typography.Title>
             </header>
+
+            <Menus collapse={expanded} />
         </Layout.Sider>
     );
 };
