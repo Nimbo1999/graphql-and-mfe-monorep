@@ -1,10 +1,11 @@
 import { type Category } from '@models/category';
 import { type Metadata } from '@models/Metadata';
 
-type CategoryRecord = Omit<Category, 'meta'> & Omit<Metadata, 'id'>;
+export type CategoryRecord = Omit<Category, 'meta'> & Omit<Metadata, 'id'>;
 
 export default class CategoryAdapter {
-    static toCategoriesList(data: Category[]): CategoryRecord[] {
+    static toCategoriesList(data?: Category[]): CategoryRecord[] {
+        if (!data) return [];
         return data.map(CategoryAdapter.toCategoryRecord);
     }
 

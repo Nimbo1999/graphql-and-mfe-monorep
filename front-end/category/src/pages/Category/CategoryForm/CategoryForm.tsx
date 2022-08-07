@@ -3,7 +3,7 @@ import { Form, Input, Button } from 'antd';
 
 import { useParams, useNavigate } from 'react-router-dom';
 
-import { useCreateCategory, useUpdateCategory } from '@hooks/mutations';
+import { useCreateCategory, useDeleteCategory, useUpdateCategory } from '@hooks/mutations';
 import { useCachedCategory } from '@hooks/queries';
 
 import CategoryRoutes from '@constants/CategoryRoutes';
@@ -21,6 +21,7 @@ const CategoryForm: React.FC = () => {
 
     const [createCategory, { loading: loadingCreateCall }] = useCreateCategory();
     const [editCategory, { loading: loadingEditCall }] = useUpdateCategory(Number(params?.id));
+    const [deleteCategory, { loading: loadingDeleteCall }] = useDeleteCategory();
 
     const fechedCategory = useCachedCategory(Number(params?.id || -1));
 
@@ -43,6 +44,11 @@ const CategoryForm: React.FC = () => {
         editCategory({ variables: { id: Number(params!.id), name: variables.name } });
     };
 
+    const onCancel = () => {
+        form.resetFields();
+        navigate(-1);
+    };
+
     const onSubmit = (variables: FormResult) => {
         if (isOnEditMode) return onEditCategory(variables);
         onCreateCategory(variables);
@@ -50,12 +56,11 @@ const CategoryForm: React.FC = () => {
 
     const onReset = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        form.resetFields();
-        navigate(CategoryRoutes.HOME, { replace: true });
+        const { id } = params;
+        deleteCategory({ variables: { id: Number(id) } }).then(() => navigate(-1));
     };
 
     useEffect(() => {
-        console.log({ fechedCategory });
         if (!!fechedCategory && !!fechedCategory.findCategoryById) {
             const { findCategoryById } = fechedCategory;
             form.setFieldsValue({ name: findCategoryById.name });
@@ -73,20 +78,44 @@ const CategoryForm: React.FC = () => {
             </Form.Item>
 
             <footer className={styles.actionButtons}>
-                <Button type="text" shape="round" size="large" htmlType="reset">
-                    Cancel
-                </Button>
+                {isOnEditMode ? (
+                    <Button
+                        type="primary"
+                        danger
+                        shape="round"
+                        size="large"
+                        htmlType="reset"
+                        loading={loadingDeleteCall}
+                        disabled={loadingDeleteCall}
+                    >
+                        Delete
+                    </Button>
+                ) : (
+                    <span />
+                )}
 
-                <Button
-                    type="primary"
-                    shape="round"
-                    size="large"
-                    htmlType="submit"
-                    loading={loading}
-                    disabled={loading}
-                >
-                    Submit
-                </Button>
+                <div>
+                    <Button
+                        type="text"
+                        shape="round"
+                        size="large"
+                        htmlType="button"
+                        onClick={onCancel}
+                    >
+                        Cancel
+                    </Button>
+
+                    <Button
+                        type="primary"
+                        shape="round"
+                        size="large"
+                        htmlType="submit"
+                        loading={loading}
+                        disabled={loading}
+                    >
+                        Submit
+                    </Button>
+                </div>
             </footer>
         </Form>
     );

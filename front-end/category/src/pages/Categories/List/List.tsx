@@ -3,10 +3,10 @@ import { Table, Card, Button, Typography } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 
 import CategoryRoutes from '@constants/CategoryRoutes';
+import CategoryAdapter, { type CategoryRecord } from '@adapters/CategoryAdapter';
+
 import { useGetCategories } from '@hooks/queries';
 import { useDeleteCategory } from '@hooks/mutations';
-
-import type { Category } from 'models/category';
 
 import ActionColumn from './ActionColumn/ActionColumn';
 
@@ -25,7 +25,7 @@ const Categories: React.FC = () => {
 
     const navigateToCreateCategory = () => navigate(CategoryRoutes.CREATE_CATEGORY);
 
-    const columns: ColumnsType<Category> = [
+    const columns: ColumnsType<CategoryRecord> = [
         {
             title: 'Name',
             dataIndex: 'name',
@@ -72,7 +72,7 @@ const Categories: React.FC = () => {
         >
             <Table
                 columns={columns}
-                dataSource={data?.findAllCategoryByName}
+                dataSource={CategoryAdapter.toCategoriesList(data?.findAllCategoryByName)}
                 loading={getCategoryLoading}
                 bordered
                 rowKey={({ id }) => id}
