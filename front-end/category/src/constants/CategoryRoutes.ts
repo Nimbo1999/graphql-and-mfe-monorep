@@ -7,8 +7,8 @@ export interface ICategoryRoutes {
 
 const CategoryRoutes: ICategoryRoutes = {
     HOME: '/',
-    CREATE_CATEGORY: '/create',
-    PARAMETER: (param: string) => `/${param}`,
+    CREATE_CATEGORY: 'create',
+    PARAMETER: (param: string) => `${param}`,
     NOT_FOUND: '*'
 };
 

@@ -1,5 +1,5 @@
 import { Layout } from 'antd';
-import { unstable_HistoryRouter as HistoryRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { History, createBrowserHistory } from 'history';
 
 import { CategoriesPage, NotFoundPage, CategoryPage } from '@pages';
@@ -16,19 +16,24 @@ const RouterProvider: React.FC<RouterProviderProps> = ({
     history = createBrowserHistory(),
     basename
 }) => {
+    console.log({ history, basename });
+
     return (
-        <HistoryRouter history={history} basename={basename}>
-            <Layout className={styles.container}>
+        <Layout className={styles.container}>
+            <BrowserRouter basename={basename}>
                 <Routes>
                     <Route path={CategoryRoutes.HOME}>
                         <Route index element={<CategoriesPage />} />
+
                         <Route path={CategoryRoutes.CREATE_CATEGORY} element={<CategoryPage />} />
-                        <Route path=":id" element={<CategoryPage />} />
+
+                        <Route path={CategoryRoutes.PARAMETER(':id')} element={<CategoryPage />} />
+
                         <Route path={CategoryRoutes.NOT_FOUND} element={<NotFoundPage />} />
                     </Route>
                 </Routes>
-            </Layout>
-        </HistoryRouter>
+            </BrowserRouter>
+        </Layout>
     );
 };
 

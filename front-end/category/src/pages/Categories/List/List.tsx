@@ -6,12 +6,14 @@ import CategoryRoutes from '@constants/CategoryRoutes';
 import CategoryAdapter, { type CategoryRecord } from '@adapters/CategoryAdapter';
 
 import { useGetCategories } from '@hooks/queries';
+// import { useHistory } from '@hooks/navigation/useHistory';
 
 import ActionColumn from './ActionColumn/ActionColumn';
 
 import styles from './List.module.scss';
 
 const Categories: React.FC = () => {
+    // const history = useHistory();
     const navigate = useNavigate();
     const { data, loading: getCategoryLoading, error } = useGetCategories();
 

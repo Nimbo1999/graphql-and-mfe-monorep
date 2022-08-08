@@ -13,10 +13,14 @@ declare module '*.module.sass' {
 
 declare module 'category/CategoryApp' {
     type MountOptions = {
-        history: import('history').History;
-        basename?: string;
+        location: import('history').Location;
+        onLocationChange: (update: import('history').Update) => void;
     };
-    type MountFunction = (element: HTMLElement, options: MountOptions) => JSX.Element;
+    type MountResult = {
+        onParentNavigate: (update: import('history').Update) => void;
+    };
+
+    type MountFunction = (element: HTMLElement, options: MountOptions) => MountResult;
     const mountApp: MountFunction;
     export { mountApp };
 }

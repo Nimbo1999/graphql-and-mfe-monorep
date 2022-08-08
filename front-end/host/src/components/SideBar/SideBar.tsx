@@ -1,8 +1,8 @@
+import { useMemo, useState } from 'react';
 import { Layout, Typography, Button } from 'antd';
 import MenuOutlined from '@ant-design/icons/MenuOutlined';
 
 import styles from './SideBar.module.scss';
-import { useMemo, useState } from 'react';
 import Menus from './Menus/Menus';
 
 const SideBar: React.FC = () => {

@@ -1,11 +1,6 @@
 import { useRef } from 'react';
-import { History } from 'history';
 
-type FinanceAppProps = {
-    history: History;
-};
-
-const FinanceApp: React.FC<FinanceAppProps> = ({ history }) => {
+const FinanceApp: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);
 
     // useEffect(() => {
@@ -16,7 +11,7 @@ const FinanceApp: React.FC<FinanceAppProps> = ({ history }) => {
     //     initializeComponent();
     // }, [containerRef.current]);
 
-    return <div ref={containerRef} />;
+    return <div ref={containerRef}>Finance APP</div>;
 };
 
 export default FinanceApp;

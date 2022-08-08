@@ -3,7 +3,8 @@ import AppstoreOutlined from '@ant-design/icons/AppstoreOutlined';
 import DollarCircleOutlined from '@ant-design/icons/DollarCircleOutlined';
 import { useState } from 'react';
 import AppRoutes from '@constants/AppRoutes';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 type MenuItem = MenuProps['items'];
 
@@ -13,13 +14,19 @@ type MenuEvent = {
 };
 
 const Menus: React.FC = () => {
-    const [selectedMenus, setSelectedMenus] = useState<string[]>([AppRoutes.HomePage]);
+    const location = useLocation();
+    const [selectedMenus, setSelectedMenus] = useState<string[]>([location.pathname]);
     const navigate = useNavigate();
 
-    const onClick = (event: MenuEvent) => {
-        setSelectedMenus(event.keyPath);
-        navigate(event.key);
-    };
+    const onClick = (event: MenuEvent) => navigate(event.key);
+
+    useEffect(() => {
+        const pathName = () => {
+            const [, context] = location.pathname.split('/');
+            setSelectedMenus([`/${context}`]);
+        };
+        pathName();
+    }, [location]);
 
     const items: MenuItem = [
         {

@@ -10,7 +10,7 @@ import './index.scss';
 const App = () => (
     <GraphqlProvider>
         <ConfigProvider locale={ptBR}>
-            <RouterProvider />
+            <RouterProvider basename="/" />
         </ConfigProvider>
     </GraphqlProvider>
 );

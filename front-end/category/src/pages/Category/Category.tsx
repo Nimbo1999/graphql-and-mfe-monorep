@@ -1,8 +1,9 @@
 import { useMemo, useEffect } from 'react';
 import { Layout, Row, Col, PageHeader, Card, Typography, Spin } from 'antd';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useGetCategory } from '@hooks/queries';
+// import { useHistory } from '@hooks/navigation/useHistory';
 import { toLocaleDateString, toLocaleTimeString } from '@utils/Date.utils';
 
 import CategoryForm from './CategoryForm/CategoryForm';
@@ -11,6 +12,7 @@ import styles from './Category.module.scss';
 
 const Category: React.FC = () => {
     const params = useParams();
+    // const history = useHistory();
     const navigate = useNavigate();
     const [getCategory, { called, data }] = useGetCategory();
 

@@ -1,35 +1,23 @@
-import { useRef } from 'react';
-import { unstable_HistoryRouter as HistoryRouter, Routes, Route } from 'react-router-dom';
-import { createBrowserHistory, BrowserHistory } from 'history';
+import { Suspense } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { SideBar } from '@components';
 import { CategoryApp, FinanceApp } from '@apps';
 import AppRoutes from '@constants/AppRoutes';
 
 const RoutesProvider: React.FC = () => {
-    const historyRef = useRef<BrowserHistory>(createBrowserHistory());
-
     return (
-        <HistoryRouter history={historyRef.current} basename="/">
+        <BrowserRouter>
             <SideBar />
 
-            <Routes>
-                <Route
-                    path={AppRoutes.HomePage}
-                    element={<FinanceApp history={historyRef.current} />}
-                />
+            <Suspense fallback={<>Loading...</>}>
+                <Routes>
+                    <Route path={AppRoutes.CategoryPage + '/*'} element={<CategoryApp />} />
 
-                <Route
-                    path={AppRoutes.CategoryPage}
-                    element={
-                        <CategoryApp
-                            history={historyRef.current}
-                            basename={AppRoutes.CategoryPage}
-                        />
-                    }
-                />
-            </Routes>
-        </HistoryRouter>
+                    <Route path={AppRoutes.HomePage} element={<FinanceApp />} />
+                </Routes>
+            </Suspense>
+        </BrowserRouter>
     );
 };
 

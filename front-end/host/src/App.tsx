@@ -2,7 +2,6 @@ import ReactDOM from 'react-dom/client';
 import { Layout } from 'antd';
 
 import { getBaseElementOrFail } from '@utils/Dom.utils';
-import { SideBar } from '@components';
 import { RoutesProvider } from '@providers';
 
 import './index.scss';

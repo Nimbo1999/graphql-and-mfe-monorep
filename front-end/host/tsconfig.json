@@ -20,6 +20,8 @@
             "@components/*": ["components/*"],
             "@constants": ["constants"],
             "@constants/*": ["constants/*"],
+            "@hooks": ["hooks"],
+            "@hooks/*": ["hooks/*"],
             "@providers": ["providers"],
             "@providers/*": ["providers/*"],
             "@utils": ["utils"],

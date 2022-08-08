@@ -36,7 +36,7 @@ const CategoryForm: React.FC = () => {
         const result = await createCategory({ variables });
         if (!!result.data) {
             const { addCategory } = result.data;
-            navigate(CategoryRoutes.PARAMETER(String(addCategory.id)), { replace: true });
+            navigate(CategoryRoutes.PARAMETER(`/${addCategory.id}`), { replace: true });
         }
     };
 
