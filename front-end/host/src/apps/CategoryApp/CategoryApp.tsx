@@ -13,7 +13,6 @@ const CategoryApp: React.FC = () => {
 
     const onLocationChange = useCallback((update: Update) => {
         if (history.location.pathname === update.location.pathname) return;
-        console.log('Pathnames são diferentes');
 
         switch (update.action) {
             case 'POP':
@@ -27,20 +26,15 @@ const CategoryApp: React.FC = () => {
 
     useEffect(() => {
         const initializeComponent = () => {
-            console.log('Aqui!');
             if (containerRef.current) {
-                console.log('Passou');
-                const { onParentNavigate } = mountApp(containerRef.current, {
-                    location: history.location,
-                    onLocationChange
+                mountApp(containerRef.current, {
+                    basename: '/category'
                 });
-
-                history.listen(onParentNavigate);
             }
         };
 
         initializeComponent();
-    }, [containerRef.current, onLocationChange]);
+    }, [containerRef.current]);
 
     return <div className={styles.container} ref={containerRef} />;
 };

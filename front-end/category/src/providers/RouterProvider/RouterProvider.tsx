@@ -8,16 +8,10 @@ import CategoryRoutes from '@constants/CategoryRoutes';
 import styles from './RouterProvider.module.scss';
 
 export type RouterProviderProps = {
-    history?: History;
     basename?: string;
 };
 
-const RouterProvider: React.FC<RouterProviderProps> = ({
-    history = createBrowserHistory(),
-    basename
-}) => {
-    console.log({ history, basename });
-
+const RouterProvider: React.FC<RouterProviderProps> = ({ basename }) => {
     return (
         <Layout className={styles.container}>
             <BrowserRouter basename={basename}>

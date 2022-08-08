@@ -34,12 +34,10 @@ const useEditCategoryMutation = (id?: number) =>
             cache.modify({
                 id: cache.identify(cachedCategory.findCategoryById),
                 fields: {
-                    name(cachedName) {
-                        console.log({ cachedName });
+                    name() {
                         return data?.updateCategory.name;
                     },
-                    meta(cachedMeta) {
-                        console.log({ cachedMeta });
+                    meta() {
                         return { lastModifiedAt: data?.updateCategory.meta.lastModifiedAt };
                     }
                 }
