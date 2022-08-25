@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "rootDir": "./src",
+        "baseUrl": "./src",
+        "jsx": "preserve",
+        "jsxImportSource": "solid-js",
+        "module": "ESNext",
+        "target": "ESNext",
+        "esModuleInterop": true,
+        "moduleResolution": "Node",
+        "sourceMap": true,
+        "newLine": "lf",
+        "outDir": "dist",
+        "strict": true,
+        "noImplicitAny": true,
+        "types": ["node"],
+        "paths": {
+            "@": ["."],
+            "@/*": ["./*"],
+        },
+    },
+    "include": ["./src", "./src/declarations.d.ts"],
+}

@@ -18,3 +18,11 @@ declare module 'category/CategoryApp' {
     const mountApp: MountFunction;
     export { mountApp };
 }
+
+declare module 'finance/FinanceApp' {
+    type MountOptions = { basename: string };
+
+    type MountFunction = (element: HTMLElement, options: MountOptions) => void;
+    const mountApp: MountFunction;
+    export { mountApp };
+}

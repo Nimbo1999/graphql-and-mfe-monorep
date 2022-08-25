@@ -54,7 +54,8 @@ module.exports = {
       name: "host",
       filename: "remoteEntry.js",
       remotes: {
-        category: 'category@http://localhost:3001/remoteEntry.js'
+        category: 'category@http://localhost:3001/remoteEntry.js',
+        finance: 'finance@http://localhost:3002/remoteEntry.js'
       },
       exposes: {},
       shared: {
