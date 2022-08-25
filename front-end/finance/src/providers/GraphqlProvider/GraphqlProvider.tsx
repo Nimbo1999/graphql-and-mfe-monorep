@@ -1,13 +1,9 @@
 import { Component, createContext, JSX, useContext } from "solid-js";
 import { createGraphQLClient, GraphQLClientQuery } from '@solid-primitives/graphql';
 
-interface GraphqlContext {
-    client: GraphQLClientQuery;
-}
+type GraphqlContext = GraphQLClientQuery;
 
-const defaultGraphQLValue: GraphqlContext = {
-    client: createGraphQLClient('http://localhost:8000')
-}
+const defaultGraphQLValue: GraphqlContext = createGraphQLClient('http://localhost:8000')
 
 const GrapgQLContext = createContext<GraphqlContext>(defaultGraphQLValue);
 

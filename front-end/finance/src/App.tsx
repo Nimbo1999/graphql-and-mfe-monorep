@@ -1,4 +1,4 @@
-import { render } from "solid-js/web";
+import { render, Suspense } from "solid-js/web";
 import { Router } from '@solidjs/router';
 import { Header } from '@/components';
 
@@ -9,7 +9,9 @@ const App = () => (
     <GraphqlProvider>
         <Router>
             <Header />
-            <RouteProvider />
+            <Suspense fallback={<>Loading...</>}>
+                <RouteProvider />
+            </Suspense>
         </Router>
     </GraphqlProvider>
 );
