@@ -2,14 +2,16 @@ import { render } from "solid-js/web";
 import { Router } from '@solidjs/router';
 import { Header } from '@/components';
 
-import { RouteProvider } from "@/providers";
+import { RouteProvider, GraphqlProvider } from "@/providers";
 import "./index.scss";
 
 const App = () => (
-    <Router>
-        <Header />
-        <RouteProvider />
-    </Router>
+    <GraphqlProvider>
+        <Router>
+            <Header />
+            <RouteProvider />
+        </Router>
+    </GraphqlProvider>
 );
 
 const getTargetElement = () => {
