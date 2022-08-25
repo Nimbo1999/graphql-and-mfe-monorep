@@ -1,9 +1,10 @@
 import { render } from "solid-js/web";
 import { Router } from '@solidjs/router';
 
-import { RouteProvider } from '@/providers';
+import { GraphqlProvider, RouteProvider } from '@/providers';
 import { Header } from "@/components";
-import { Component } from "solid-js";
+import { Component, Suspense } from "solid-js";
+import './App.scss';
 
 type AppWrapperProps = {
     basename: string;
@@ -11,10 +12,14 @@ type AppWrapperProps = {
 
 const AppWrapper: Component<AppWrapperProps> = (props) => {
     return (
-        <Router base={props.basename}>
-            <Header />
-            <RouteProvider />
-        </Router>
+        <GraphqlProvider>
+            <Router base={props.basename}>
+                <Header />
+                <Suspense fallback={<>Loading...</>}>
+                    <RouteProvider />
+                </Suspense>
+            </Router>
+        </GraphqlProvider>
     );
 }
 

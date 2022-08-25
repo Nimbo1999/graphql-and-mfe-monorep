@@ -31,7 +31,16 @@ module.exports = {
       },
       {
         test: /\.(css|s[ac]ss)$/i,
-        use: ["style-loader", "css-loader", "sass-loader", "postcss-loader"],
+        use: ["style-loader", "css-loader", "sass-loader", {
+            loader: "postcss-loader",
+            options: {
+                postcssOptions: {
+                    plugins: function() {
+                        return [require('autoprefixer')]
+                    }
+                }
+            }
+        }],
       },
       {
         test: /\.(ts|tsx|js|jsx)$/,
