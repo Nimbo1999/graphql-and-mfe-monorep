@@ -5,6 +5,9 @@
     cursor: pointer;
     border-radius: 100px;
     padding: .25rem 1rem;
+    * {
+        cursor: pointer!important;
+    }
 }
 
 .btn-primary {

@@ -11,7 +11,7 @@ const FinanceApp: React.FC = () => {
         const initializeComponent = () => {
             if (containerRef.current)
                 mountApp(containerRef.current, {
-                    basename: AppRoutes.HomePage
+                    basename: AppRoutes.FinancePage
                 });
         };
 
