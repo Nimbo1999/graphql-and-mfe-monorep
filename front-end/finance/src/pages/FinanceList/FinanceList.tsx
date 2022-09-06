@@ -10,10 +10,6 @@ import styles from './FinanceList.module.scss';
 const FinanceList: Component = () => {
     const [data, { refetch }] = useFinanceQuery<FinancesQueryResponse>("getFinanceList");
 
-    createEffect(() => {
-        console.log(data());
-    });
-
     const columns: TableColumn<FinanceReponse>[] = [
         {
             label: '#',

@@ -1,0 +1,46 @@
+{
+    "plugins": [],
+    "extends": [
+        "plugin:import/recommended",
+        "plugin:jsx-a11y/recommended",
+        "prettier"
+    ],
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+        "requireConfigFile": false,
+        "ecmaVersion": 11,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "ecmaFeatures": {
+        "jsx": true,
+        "modules": true,
+        "spread": true,
+        "arrowFunctions": true,
+        "classes": true,
+        "defaultParams": true,
+        "generators": true,
+        "destructuring": true,
+        "impliedStrict": true,
+        "forOf": true,
+        "restParams": true,
+        "templateStrings": true,
+        "experimentalObjectRestSpread": true
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".ts", ".tsx"],
+                "moduleDirectory": ["node_modules", "src/"]
+            }
+        }
+    },
+    "env": {
+        "browser": true,
+        "es6": true,
+        "es2021": true
+    },
+    "rules": {}
+}
