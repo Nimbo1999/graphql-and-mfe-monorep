@@ -1,6 +1,7 @@
 import { Menu, type MenuProps } from 'antd';
 import AppstoreOutlined from '@ant-design/icons/AppstoreOutlined';
 import DollarCircleOutlined from '@ant-design/icons/DollarCircleOutlined';
+import HomeOutlined from '@ant-design/icons/HomeOutlined';
 import { useState } from 'react';
 import AppRoutes from '@constants/AppRoutes';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -30,9 +31,15 @@ const Menus: React.FC = () => {
 
     const items: MenuItem = [
         {
+            label: 'Home',
+            icon: <HomeOutlined />,
+            key: AppRoutes.HomePage,
+            onClick
+        },
+        {
             label: 'Finance',
             icon: <DollarCircleOutlined />,
-            key: AppRoutes.HomePage,
+            key: AppRoutes.FinancePage,
             onClick
         },
         {

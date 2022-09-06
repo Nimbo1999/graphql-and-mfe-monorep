@@ -22,6 +22,8 @@
             "@constants/*": ["constants/*"],
             "@hooks": ["hooks"],
             "@hooks/*": ["hooks/*"],
+            "@pages": ["pages"],
+            "@pages/*": ["pages/*"],
             "@providers": ["providers"],
             "@providers/*": ["providers/*"],
             "@utils": ["utils"],
