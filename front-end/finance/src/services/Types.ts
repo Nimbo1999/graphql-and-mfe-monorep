@@ -1,3 +1,1 @@
-export type MethodOptions = {
-    variables: Record<string, any>;
-}
+export type MethodOptions = any;

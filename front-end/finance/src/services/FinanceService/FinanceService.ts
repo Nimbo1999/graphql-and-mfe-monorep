@@ -1,5 +1,4 @@
-import { MethodOptions } from "../Types";
-
 export default interface FinanceService {
-    getFinanceList(options?: MethodOptions): string;
+    getFinanceList(): string;
+    postFinance(): string;
 }

@@ -9,5 +9,5 @@ export const useCategoryQuery = <T>(
 ) => {
     const graphqlClient = useGraphqlClient();
     const categoryService = new CategoryGraphqlService();
-    return graphqlClient<T>(categoryService[serviceMethod](options));
+    return graphqlClient<T>(categoryService[serviceMethod](), options);
 };

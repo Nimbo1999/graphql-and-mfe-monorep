@@ -1,9 +1,26 @@
 import { gql } from '@solid-primitives/graphql';
-import { MethodOptions } from '../Types';
 import FinanceService from './FinanceService';
 
 export default class FinanceGraphqlService implements FinanceService {
-    getFinanceList(options?: MethodOptions): string {
+    postFinance(): string {
+        return gql`
+            mutation createFinance($amount: Float!, $description: String, $category: Int!) {
+                addFinance(
+                    finance: { amount: $amount, description: $description, category: $category }
+                ) {
+                    id
+                    description
+                    amount
+                    category {
+                        id
+                        name
+                    }
+                }
+            }
+        `;
+    }
+
+    getFinanceList(): string {
         return gql`
             query getFinanceList {
                 findAllFinance {

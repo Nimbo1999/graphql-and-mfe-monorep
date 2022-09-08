@@ -2,29 +2,43 @@ import { Component, createEffect, createSignal } from 'solid-js';
 
 import { Input, Button, Select, type OptionProps } from '@/components';
 import { useCategoryQuery } from '@/hooks/useQuery/useCategoriesQuery';
+import { usePostFinance } from '@/hooks/useMutation/usePostFinance';
 import CategoryAdapter from '@/adapters/CategoryAdapter';
 
-import type { CategoryListToComboBoxResponse } from './Types';
+import type { CategoryListToComboBoxResponse, FinancePostResponse } from './Types';
 
 import styles from './FinanceDetails.module.scss';
 
 const FinanceDetails: Component = () => {
     const [categories, setCategories] = createSignal<OptionProps>([]);
+    const [postQueryVars, setPostQueryVars] = createSignal<
+        boolean | Record<string, string | number>
+    >(false);
 
-    const [data, { refetch }] = useCategoryQuery<CategoryListToComboBoxResponse>(
+    const [categoriesComboBox, { refetch }] = useCategoryQuery<CategoryListToComboBoxResponse>(
         'getCategoryListToComboBox'
     );
+
+    const [postFinanceData] = usePostFinance<FinancePostResponse>('postFinance', postQueryVars);
 
     const onSubmit = (event: SubmitEvent) => {
         event.preventDefault();
         const formData = new FormData(event.target as HTMLFormElement);
+        const data: Record<string, string | number> = {};
         for (const [key, value] of formData.entries()) {
-            console.log({ key, value });
+            if (key !== 'description' && !isNaN(Number(value))) {
+                data[key] = Number(value);
+                continue;
+            }
+            data[key] = value as string;
         }
+        console.log({ data });
+        // mutate(data);
+        setPostQueryVars(data);
     };
 
     createEffect(() => {
-        const categoriesResponse = data();
+        const categoriesResponse = categoriesComboBox();
         if (!!categoriesResponse) {
             setCategories(CategoryAdapter.toComboBox(categoriesResponse!.findAllCategoryByName));
         }
@@ -33,7 +47,7 @@ const FinanceDetails: Component = () => {
     return (
         <div class={styles.container}>
             <div class="col-12 card">
-                <div class="card-body">
+                <div class="card-body p-4">
                     <header>
                         <h4 class="card-title">Create Finance</h4>
                         <h6 class="cart-subtitle text-muted">
