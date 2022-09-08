@@ -6,11 +6,15 @@ import { FinanceDetails, FinanceList } from '@/pages';
 
 export const routes: RouteProps[] = [
     {
-        path: AppRoutes.FINANCE_LIST,
-        component: FinanceList
-    },
-    {
         path: AppRoutes.CREATE_FINANCE,
         component: FinanceDetails
+    },
+    {
+        path: AppRoutes.PARAMETER(':id'),
+        component: FinanceDetails
+    },
+    {
+        path: AppRoutes.FINANCE_LIST,
+        component: FinanceList
     }
 ];

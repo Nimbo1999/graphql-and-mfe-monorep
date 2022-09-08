@@ -6,8 +6,12 @@ export type CategoryListToComboBoxResponse = {
     findAllCategoryByName: CategoryOption[];
 };
 
-type FinanceOption = Omit<Finance, 'meta'>;
+export type FinanceOption = Omit<Finance, 'meta'>;
 
 export type FinancePostResponse = {
-    addFinance: FinanceOption;
+    addFinance: Pick<FinanceOption, 'id'>;
+};
+
+export type FindFinanceByIdResponse = {
+    findFinanceById: FinanceOption;
 };

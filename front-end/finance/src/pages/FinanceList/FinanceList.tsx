@@ -51,7 +51,10 @@ const FinanceList: Component = () => {
                                 <Tooltip id={`tooltip-${category.name}-${id}-edit`}>Editar</Tooltip>
                             }
                         >
-                            <Button onClick={e => console.log(e)} noPaddings>
+                            <Button
+                                onClick={() => navigate(AppRoutes.PARAMETER(String(id)))}
+                                noPaddings
+                            >
                                 <AiFillEdit size="1rem" color="blue" />
                             </Button>
                         </OverlayTrigger>

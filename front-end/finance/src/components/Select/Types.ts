@@ -7,4 +7,5 @@ export interface SelectProps {
     options?: OptionProps[];
     id: string;
     name: string;
+    ref?: HTMLSelectElement | ((el: HTMLSelectElement) => void);
 }
