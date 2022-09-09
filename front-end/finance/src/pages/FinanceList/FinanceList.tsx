@@ -1,9 +1,9 @@
-import { Component, Show } from 'solid-js';
+import { Component, createEffect, createSignal, Show } from 'solid-js';
 import { Card, Row, Col, OverlayTrigger, Tooltip } from 'solid-bootstrap';
 import { AiFillEdit, AiFillDelete } from 'solid-icons/ai';
 import { useNavigate } from '@solidjs/router';
 
-import { useFinanceQuery } from '@/hooks';
+import { useFinanceQuery, useFinanceMutation } from '@/hooks';
 import { Table, type TableColumn, Button } from '@/components';
 import IntlUtils from '@/utils/Intl.utils';
 import { AppRoutes } from '@/constants/AppRoutes';
@@ -13,9 +13,23 @@ import styles from './FinanceList.module.scss';
 
 const FinanceList: Component = () => {
     const navigate = useNavigate();
-    const [data, { refetch }] = useFinanceQuery<FinancesQueryResponse>('getFinanceList');
+
+    const [deleteFinanceQueryVars, setDeleteFinanceQueryVars] = createSignal<
+        boolean | Record<'id', number>
+    >(false);
+
+    const [financeData, { refetch: refetchFinanceList }] =
+        useFinanceQuery<FinancesQueryResponse>('getFinanceList');
+
+    const [deleteFinanceData] = useFinanceMutation('deleteFinance', deleteFinanceQueryVars);
 
     const navigateToHomePage = () => navigate(AppRoutes.CREATE_FINANCE);
+
+    const onDeleteFinance = (id?: number) => {
+        if (!id) return;
+        const deleteData: Record<'id', number> = { id };
+        setDeleteFinanceQueryVars(deleteData);
+    };
 
     const columns: TableColumn<FinanceReponse>[] = [
         {
@@ -69,7 +83,7 @@ const FinanceList: Component = () => {
                                 </Tooltip>
                             }
                         >
-                            <Button onClick={e => console.log(e)} noPaddings>
+                            <Button onClick={() => onDeleteFinance(id)} noPaddings>
                                 <AiFillDelete size="1rem" color="red" />
                             </Button>
                         </OverlayTrigger>
@@ -78,6 +92,12 @@ const FinanceList: Component = () => {
             )
         }
     ];
+
+    createEffect(() => {
+        if (!!deleteFinanceData()) {
+            refetchFinanceList();
+        }
+    });
 
     return (
         <main class={styles.container}>
@@ -91,8 +111,8 @@ const FinanceList: Component = () => {
                 </Card.Header>
 
                 <Card.Body>
-                    <Show when={data() !== undefined}>
-                        <Table columns={columns} data={data()!.findAllFinance} />
+                    <Show when={financeData() !== undefined}>
+                        <Table columns={columns} data={financeData()!.findAllFinance} />
                     </Show>
                 </Card.Body>
             </Card>

@@ -2,6 +2,16 @@ import { gql } from '@solid-primitives/graphql';
 import FinanceService from './FinanceService';
 
 export default class FinanceGraphqlService implements FinanceService {
+    deleteFinance(): string {
+        return gql`
+            mutation deleteFinance($id: Int!) {
+                deleteFinance(id: $id) {
+                    id
+                }
+            }
+        `;
+    }
+
     findFinanceById(): string {
         return gql`
             query findFinanceById($id: Int!) {

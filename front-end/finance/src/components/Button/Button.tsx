@@ -1,23 +1,32 @@
-import { Component, JSXElement } from "solid-js";
+import { Component, JSXElement } from 'solid-js';
 
 import styles from './Button.module.scss';
+
+type ButtonType = 'default' | 'primary' | 'danger';
 
 type ButtonProps = {
     children: JSXElement;
     class?: string;
     onClick?: (event?: MouseEvent) => void;
     type?: 'submit' | 'reset' | 'button';
-    btnType?: 'default' | 'primary';
+    btnType?: ButtonType;
     noPaddings?: boolean;
-}
+};
 
-const Button: Component<ButtonProps> = ({ children, class: className, onClick, type = 'button', btnType = 'default', noPaddings = false }) => {
+const Button: Component<ButtonProps> = ({
+    children,
+    class: className,
+    onClick,
+    type = 'button',
+    btnType = 'default',
+    noPaddings = false
+}) => {
     return (
         <button
             classList={{
                 [styles['base-button-style']]: true,
                 [className!]: !!className,
-                [styles['btn-primary']]: btnType === 'primary',
+                [styles[`btn-${btnType}`]]: !!btnType,
                 [styles['no-paddings']]: !!noPaddings
             }}
             onClick={onClick}
@@ -25,7 +34,7 @@ const Button: Component<ButtonProps> = ({ children, class: className, onClick, t
         >
             {children}
         </button>
-    )
-}
+    );
+};
 
 export default Button;

@@ -1,9 +1,9 @@
-import { Component, createEffect, createSignal } from 'solid-js';
+import { Component, createEffect, createSignal, Show } from 'solid-js';
 import { useNavigate, useParams } from '@solidjs/router';
 
 import { Input, Button, Select, type OptionProps } from '@/components';
 import { useCategoryQuery, useFinanceQuery } from '@/hooks/useQuery';
-import { usePostFinance } from '@/hooks/useMutation/usePostFinance';
+import { useFinanceMutation } from '@/hooks/useMutation';
 import CategoryAdapter from '@/adapters/CategoryAdapter';
 
 import type {
@@ -23,11 +23,13 @@ const FinanceDetails: Component = () => {
 
     const navigate = useNavigate();
     const params = useParams();
-    const [lastGetResponse, setLastGetResponse] = createSignal<null | FinanceOption>(null);
     const [categories, setCategories] = createSignal<OptionProps>([]);
     const [postQueryVars, setPostQueryVars] = createSignal<
         boolean | Record<string, string | number>
     >(false);
+    const [deleteQueryVars, setDeleteQueryVars] = createSignal<boolean | Record<'id', number>>(
+        false
+    );
     const [getFinanceQueryVars, setGetFinanceQueryVars] = createSignal<
         boolean | Record<string, number>
     >(false);
@@ -41,7 +43,11 @@ const FinanceDetails: Component = () => {
         getFinanceQueryVars
     );
 
-    const [postFinanceData] = usePostFinance<FinancePostResponse>('postFinance', postQueryVars);
+    const [postFinanceData] = useFinanceMutation<FinancePostResponse>('postFinance', postQueryVars);
+    const [deleteFinanceData] = useFinanceMutation<FinancePostResponse>(
+        'deleteFinance',
+        deleteQueryVars
+    );
 
     const onSubmit = (event: SubmitEvent) => {
         event.preventDefault();
@@ -61,6 +67,18 @@ const FinanceDetails: Component = () => {
         }
         console.log('This is the editing Mode!');
     };
+
+    const onReset = (event: Event & { currentTarget: HTMLFormElement; target: Element }) => {
+        event.preventDefault();
+        const deleteData: Record<'id', number> = { id: Number(params.id) };
+        setDeleteQueryVars(deleteData);
+    };
+
+    createEffect(() => {
+        if (!!deleteFinanceData()) {
+            navigate(AppRoutes.FINANCE_LIST, { replace: true });
+        }
+    });
 
     createEffect(() => {
         const categoriesResponse = categoriesComboBox();
@@ -105,7 +123,7 @@ const FinanceDetails: Component = () => {
                     </header>
 
                     <main>
-                        <form class="row" onSubmit={onSubmit}>
+                        <form class="row" onSubmit={onSubmit} onReset={onReset}>
                             <div class="col-12 col-lg-12 my-2">
                                 <label for="description" class="form-label">
                                     Description:
@@ -132,7 +150,13 @@ const FinanceDetails: Component = () => {
                                 />
                             </div>
 
-                            <footer class="col-12 col-lg-12 my-2 d-flex justify-content-end">
+                            <footer class="col-12 col-lg-12 my-2 d-flex justify-content-end gap-3">
+                                <Show when={!!params.id}>
+                                    <Button type="reset" btnType="danger">
+                                        Delete
+                                    </Button>
+                                </Show>
+
                                 <Button type="submit" btnType="primary">
                                     Confirm
                                 </Button>

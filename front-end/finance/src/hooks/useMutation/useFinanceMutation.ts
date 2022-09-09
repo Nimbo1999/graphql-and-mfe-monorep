@@ -3,7 +3,7 @@ import { FinanceGraphqlService, FinanceService, MethodOptions } from '@/services
 
 type FinanceGraphqlServiceMethod = keyof FinanceGraphqlService;
 
-export const usePostFinance = <T>(
+export const useFinanceMutation = <T>(
     serviceMethod: FinanceGraphqlServiceMethod,
     options?: MethodOptions
 ) => {

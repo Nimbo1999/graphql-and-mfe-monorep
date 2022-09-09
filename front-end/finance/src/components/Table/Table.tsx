@@ -1,4 +1,4 @@
-import { Component, For } from "solid-js";
+import { Component, For } from 'solid-js';
 import { Table as BootstrapTable } from 'solid-bootstrap';
 
 export interface Column<D> {
@@ -13,23 +13,23 @@ export interface TableProps<D extends {} = any> {
     data: D[];
 }
 
-const Table: Component<TableProps> = ({ columns, data }) => {
+const Table: Component<TableProps> = props => {
     return (
         <BootstrapTable striped bordered hover>
             <thead>
                 <tr>
-                    <For each={columns}>
+                    <For each={props.columns}>
                         {({ label, width }) => <th style={{ width: `${width}px` }}>{label}</th>}
                     </For>
                 </tr>
             </thead>
 
             <tbody>
-                <For each={data}>
-                    {(item) => (
+                <For each={props.data}>
+                    {item => (
                         <tr>
-                            <For each={columns}>
-                                {(column) => <td>{column.render(item)}</td>}
+                            <For each={props.columns}>
+                                {column => <td>{column.render(item)}</td>}
                             </For>
                         </tr>
                     )}
@@ -37,6 +37,6 @@ const Table: Component<TableProps> = ({ columns, data }) => {
             </tbody>
         </BootstrapTable>
     );
-}
+};
 
 export default Table;
