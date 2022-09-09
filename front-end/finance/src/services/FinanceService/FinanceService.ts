@@ -3,4 +3,5 @@ export default interface FinanceService {
     findFinanceById(): string;
     postFinance(): string;
     deleteFinance(): string;
+    updateFinance(): string;
 }

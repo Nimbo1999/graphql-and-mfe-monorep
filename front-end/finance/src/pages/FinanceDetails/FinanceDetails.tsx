@@ -10,7 +10,9 @@ import type {
     CategoryListToComboBoxResponse,
     FinancePostResponse,
     FindFinanceByIdResponse,
-    FinanceOption
+    UpdateDataKeys,
+    FinanceDeleteResponse,
+    FinancePutResponse
 } from './Types';
 
 import styles from './FinanceDetails.module.scss';
@@ -24,17 +26,24 @@ const FinanceDetails: Component = () => {
     const navigate = useNavigate();
     const params = useParams();
     const [categories, setCategories] = createSignal<OptionProps>([]);
+
     const [postQueryVars, setPostQueryVars] = createSignal<
         boolean | Record<string, string | number>
     >(false);
+
+    const [updateQueryVars, setUpdateQueryVars] = createSignal<
+        boolean | Record<UpdateDataKeys, string | number>
+    >(false);
+
     const [deleteQueryVars, setDeleteQueryVars] = createSignal<boolean | Record<'id', number>>(
         false
     );
+
     const [getFinanceQueryVars, setGetFinanceQueryVars] = createSignal<
         boolean | Record<string, number>
     >(false);
 
-    const [categoriesComboBox, { refetch }] = useCategoryQuery<CategoryListToComboBoxResponse>(
+    const [categoriesComboBox] = useCategoryQuery<CategoryListToComboBoxResponse>(
         'getCategoryListToComboBox'
     );
 
@@ -44,7 +53,11 @@ const FinanceDetails: Component = () => {
     );
 
     const [postFinanceData] = useFinanceMutation<FinancePostResponse>('postFinance', postQueryVars);
-    const [deleteFinanceData] = useFinanceMutation<FinancePostResponse>(
+    const [updateFinanceData] = useFinanceMutation<FinancePutResponse>(
+        'updateFinance',
+        updateQueryVars
+    );
+    const [deleteFinanceData] = useFinanceMutation<FinanceDeleteResponse>(
         'deleteFinance',
         deleteQueryVars
     );
@@ -65,7 +78,10 @@ const FinanceDetails: Component = () => {
             setPostQueryVars(data);
             return;
         }
+        data['id'] = Number(params.id);
         console.log('This is the editing Mode!');
+        console.log(data);
+        setUpdateQueryVars(data);
     };
 
     const onReset = (event: Event & { currentTarget: HTMLFormElement; target: Element }) => {
@@ -107,6 +123,10 @@ const FinanceDetails: Component = () => {
                 descriptionRef.setAttribute('value', finance.description || '');
                 amountRef.setAttribute('value', String(finance.amount));
                 categoryRef.setAttribute('value', String(finance.category.id));
+                const selectedOption = categoryRef.namedItem(String(finance.category.id));
+                if (selectedOption) {
+                    selectedOption.setAttribute('selected', 'true');
+                }
             }
         }
     });
@@ -158,7 +178,9 @@ const FinanceDetails: Component = () => {
                                 </Show>
 
                                 <Button type="submit" btnType="primary">
-                                    Confirm
+                                    <Show when={!params.id} fallback="Update">
+                                        Create
+                                    </Show>
                                 </Button>
                             </footer>
                         </form>

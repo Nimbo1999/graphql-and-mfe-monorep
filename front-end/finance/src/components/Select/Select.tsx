@@ -6,7 +6,11 @@ const Select: Component<SelectProps> = props => {
         <select class="form-select" name={props.name} id={props.id} ref={props.ref}>
             <Show when={!!props.options?.length}>
                 <For each={props.options}>
-                    {option => <option value={option.value}>{option.children}</option>}
+                    {option => (
+                        <option id={option.value} value={option.value}>
+                            {option.children}
+                        </option>
+                    )}
                 </For>
             </Show>
         </select>

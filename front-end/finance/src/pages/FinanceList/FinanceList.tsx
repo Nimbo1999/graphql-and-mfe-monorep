@@ -31,6 +31,11 @@ const FinanceList: Component = () => {
         setDeleteFinanceQueryVars(deleteData);
     };
 
+    const displayLocalDateTime = (value: string) => IntlUtils.formatToLocalDateTime(Number(value));
+
+    const byLastModifiedAt = (a: FinanceReponse, b: FinanceReponse) =>
+        Number(b.meta.lastModifiedAt) - Number(a.meta.lastModifiedAt);
+
     const columns: TableColumn<FinanceReponse>[] = [
         {
             label: '#',
@@ -51,6 +56,16 @@ const FinanceList: Component = () => {
             label: 'Category',
             name: 'category',
             render: ({ category }) => <>{category.name}</>
+        },
+        {
+            label: 'Created at',
+            name: 'createdAt',
+            render: ({ meta }) => <>{displayLocalDateTime(meta.createdAt)}</>
+        },
+        {
+            label: 'Last modified at',
+            name: 'lastModifiedAt',
+            render: ({ meta }) => <>{displayLocalDateTime(meta.lastModifiedAt)}</>
         },
         {
             label: 'Actions',
@@ -112,7 +127,10 @@ const FinanceList: Component = () => {
 
                 <Card.Body>
                     <Show when={financeData() !== undefined}>
-                        <Table columns={columns} data={financeData()!.findAllFinance} />
+                        <Table
+                            columns={columns}
+                            data={financeData()!.findAllFinance.sort(byLastModifiedAt)}
+                        />
                     </Show>
                 </Card.Body>
             </Card>
