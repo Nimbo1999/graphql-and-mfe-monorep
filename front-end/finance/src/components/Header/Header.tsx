@@ -17,16 +17,12 @@ const Header: Component = () => {
 
     createEffect(() => {
         const path = match()?.path.replace('/finance', '/').replace('//', '/');
-        console.log({ path });
         if (path) {
             const splittedPath = path.split('/');
             const lastRouteContext = splittedPath[splittedPath.length - 1];
-            console.log({ splittedPath, AppRoutes, context: '/'.concat(lastRouteContext) });
             if ('/'.concat(lastRouteContext) !== AppRoutes.FINANCE_LIST) {
-                console.log('Set to True');
                 return setIsBackButtonEnabled(true);
             }
-            console.log('Set to false');
             setIsBackButtonEnabled(false);
         }
     });

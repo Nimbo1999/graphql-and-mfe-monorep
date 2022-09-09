@@ -74,13 +74,10 @@ const FinanceDetails: Component = () => {
             data[key] = value as string;
         }
         if (!params.id) {
-            console.log('This is the create mode!');
             setPostQueryVars(data);
             return;
         }
         data['id'] = Number(params.id);
-        console.log('This is the editing Mode!');
-        console.log(data);
         setUpdateQueryVars(data);
     };
 
